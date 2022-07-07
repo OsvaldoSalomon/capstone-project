@@ -12,9 +12,11 @@ class User(db.Model, UserMixin):
     lastName = db.Column(db.String(40), nullable=False)
     birthday = db.Column(db.DateTime, nullable=False)
     bio = db.Column(db.String(255), nullable=False)
-    profilePic = db.Column(db.String(255))
+    profilePic = db.Column(db.String(255), default='https://c4.wallpaperflare.com/wallpaper/365/376/18/lego-minimalism-yellow-wallpaper-preview.jpg')
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+
+    # image = db.relationship("Image", back_populates="users", cascade="all, delete")
 
     @property
     def password(self):
@@ -34,5 +36,6 @@ class User(db.Model, UserMixin):
             'firstName': self.firstName,
             'lastName': self.lastName,
             'bio': self.bio,
-            'email': self.email
+            'email': self.email,
+            'profilePic': self.profilePic
         }
