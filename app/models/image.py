@@ -7,7 +7,7 @@ class Image(db.Model):
   tweetId = db.Column(db.Integer, db.ForeignKey('tweets.id'), nullable=False)
   url = db.Column(db.String(255), nullable=False)
 
-  spots = db.relationship('Tweet', back_populates='images')
+  tweets = db.relationship('Tweet', back_populates='images')
 
   def to_dict(self):
     return {

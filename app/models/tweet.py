@@ -23,6 +23,7 @@ class Tweet(db.Model):
             'comments': [comment.to_dict() for comment in self.comments],
             'images': [ image.to_dict() for image in self.images],
             'likes': [like.to_dict() for like in self.likes],
+            'user': self.user.to_dict(),
             'createdAt': self.createdAt,
             'updatedAt': self.updatedAt
         }

@@ -22,5 +22,6 @@ class Comment(db.Model):
             'userId': self.userId,
             'tweetId': self.tweetId,
             'createdAt': self.createdAt,
-            'updatedAt': self.updatedAt
+            'updatedAt': self.updatedAt,
+            'user': self.user.to_dict()
         }

@@ -8,5 +8,5 @@ class Like(db.Model):
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     tweetId = db.Column(db.Integer, db.ForeignKey('tweets.id'), nullable=False)
 
-    users = db.relationship('User', back_populates='likes')
+    user = db.relationship('User', back_populates='likes')
     tweets = db.relationship('Tweet', back_populates='likes')

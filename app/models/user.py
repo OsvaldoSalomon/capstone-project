@@ -17,8 +17,8 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     tweets = db.relationship('Tweet', back_populates='users')
-    comments = db.relationship('Comment', back_populates='comments')
-    likes = db.relationship('Likes', back_populates='likes')
+    comments = db.relationship('Comment', back_populates='users')
+    likes = db.relationship('Like', back_populates='user')
 
     @property
     def password(self):
