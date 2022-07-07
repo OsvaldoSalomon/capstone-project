@@ -1,8 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required
 
-from app.aws_s3_helper import (
-    upload_file_to_s3, allowed_file, get_unique_filename)
+from app.aws_s3_helper import (upload_file_to_s3, allowed_file, get_unique_filename)
 from app.models import Image, db
 
 

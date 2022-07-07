@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
-from app.models import db, Tweet
+from app.models import Tweet, db
+# from app.models import tweet
 
 tweetRoutes =  Blueprint('tweets', __name__)
 
@@ -10,8 +11,8 @@ def getAllTweets():
 
 @tweetRoutes.route('/<int:id>')
 def getSingleTweet(id):
-    tweet = Tweet.query.get(id)
-    if tweet:
-        return tweet.to_dict()
+    singleTweet = Tweet.query.get(id)
+    if singleTweet:
+        return singleTweet.to_dict()
     else:
         return 'Tweet not found.'
