@@ -7,7 +7,7 @@ tweetRoutes =  Blueprint('tweets', __name__)
 @tweetRoutes.route('/')
 def getAllTweets():
     tweets = Tweet.query.all()
-    return { tweet.id: tweet.to_dict() for tweet in tweets }
+    return { tweet.id: tweet.to_dict_all() for tweet in tweets }
 
 @tweetRoutes.route('/<int:id>')
 def getSingleTweet(id):

@@ -15,15 +15,32 @@ class Tweet(db.Model):
     images = db.relationship("Image", back_populates="tweets", cascade="all, delete")
     likes = db.relationship("Like", back_populates="tweets", cascade="all, delete")
 
+    def to_dict_all(self):
+        return {
+            'id': self.id,
+            'content': self.content,
+            'userId': self.userId,
+            'user': self.users.to_info(),
+            # 'comments': [comment.to_dict() for comment in self.comments],
+            'comments': len(self.comments),
+            'images': [ image.to_dict() for image in self.images],
+            # 'likes': [like.to_dict() for like in self.likes],
+            'likes': len(self.likes),
+            'createdAt': self.createdAt,
+            'updatedAt': self.updatedAt
+        }
+
     def to_dict(self):
         return {
             'id': self.id,
             'content': self.content,
             'userId': self.userId,
+            'user': self.users.to_info(),
             'comments': [comment.to_dict() for comment in self.comments],
+            # 'comments': len(self.comments),
             'images': [ image.to_dict() for image in self.images],
-            'likes': [like.to_dict() for like in self.likes],
-            'user': self.user.to_dict(),
+            # 'likes': [like.to_dict() for like in self.likes],
+            'likes': len(self.likes),
             'createdAt': self.createdAt,
             'updatedAt': self.updatedAt
         }

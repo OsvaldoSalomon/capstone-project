@@ -41,3 +41,12 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'profilePic': self.profilePic
         }
+
+    def to_info(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'firstName': self.firstName,
+            'lastName': self.lastName,
+            'profilePic': self.profilePic
+        }

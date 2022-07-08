@@ -19,9 +19,9 @@ class Comment(db.Model):
         return {
             'id': self.id,
             'content': self.content,
+            'user': self.users.to_info(),
             'userId': self.userId,
             'tweetId': self.tweetId,
             'createdAt': self.createdAt,
             'updatedAt': self.updatedAt,
-            'user': self.user.to_dict()
         }
