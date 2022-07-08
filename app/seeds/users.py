@@ -1,10 +1,11 @@
+import datetime
 from app.models import db, User
 
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    demo = User(username='Demo-lition', email='demo@tweetr.io', password='pbkdf2:sha256:260000$ZIsDfQK1x1adpIos$6ccba63d7d16b3e42c3e57221c60f12c377fba2e49a9f9d0fad2888eba8cb11d')
-    jimHawkins = User(username='JHawkins', email='jhawk@tweetr.io', password='pbkdf2:sha256:260000$xTihSZmJI0H5piZ3$6faae5279f5cd45d484d1883f870346e00a639fac7b024650c65e0a7a5e90f15')
+    demo = User(username='demo-lition', firstName='Demo', lastName='Lition', birthday=datetime.datetime.now(), bio='Passion for trying new things', email='demo@tweetr.io', password='pbkdf2:sha256:260000$ZIsDfQK1x1adpIos$6ccba63d7d16b3e42c3e57221c60f12c377fba2e49a9f9d0fad2888eba8cb11d')
+    jimHawkins = User(username='jhawk', firstName='Jim', lastName='Hawkins', birthday=datetime.datetime.now(), bio="Testing the cut of my sails and rattling the stars", email='jhawk@tweetr.io', password='pbkdf2:sha256:260000$xTihSZmJI0H5piZ3$6faae5279f5cd45d484d1883f870346e00a639fac7b024650c65e0a7a5e90f15')
 
     db.session.add(demo)
     db.session.add(jimHawkins)

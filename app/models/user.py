@@ -8,8 +8,17 @@ class User(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
+    firstName = db.Column(db.String(40), nullable=False)
+    lastName = db.Column(db.String(40), nullable=False)
+    birthday = db.Column(db.DateTime, nullable=False)
+    bio = db.Column(db.String(255), nullable=False)
+    profilePic = db.Column(db.String(255), default='https://c4.wallpaperflare.com/wallpaper/365/376/18/lego-minimalism-yellow-wallpaper-preview.jpg')
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+
+    tweets = db.relationship('Tweet', back_populates='users')
+    comments = db.relationship('Comment', back_populates='users')
+    likes = db.relationship('Like', back_populates='user')
 
     @property
     def password(self):
@@ -26,5 +35,18 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'firstName': self.firstName,
+            'lastName': self.lastName,
+            'bio': self.bio,
+            'email': self.email,
+            'profilePic': self.profilePic
+        }
+
+    def to_info(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'firstName': self.firstName,
+            'lastName': self.lastName,
+            'profilePic': self.profilePic
         }
