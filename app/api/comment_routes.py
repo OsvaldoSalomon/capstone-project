@@ -22,7 +22,7 @@ def getSingleComment(id):
     else:
         return 'Comment not found.'
 
-@commentRoutes.route('/<int:tweetId>/new')
+@commentRoutes.route('/<int:tweetId>/new', methods=['POST'])
 @login_required
 def createComment(tweetId):
     form = CommentForm()
@@ -42,7 +42,7 @@ def createComment(tweetId):
         return comment.to_dict()
     return {'errors': validationErrorsList(form.errors)}, 401
     
-@commentRoutes.route('/<int:commentId>')
+@commentRoutes.route('/<int:commentId>', methods=['PUT'])
 @login_required
 def updateComment(commentId):
     comment = Comment.query.get(commentId)
