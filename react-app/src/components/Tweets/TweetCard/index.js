@@ -11,7 +11,7 @@ const TweetCard = ({ tweet }) => {
 	return (
 		<div className="tweetBody">
 			<div className="tweetProfilePic">
-				<img className="tweetImageProfile" src={tweet.user.profilePic} />
+				<img className="tweetImageProfile" src={tweet.user.profilePic} alt={tweet.user.username}/>
 			</div>
 			<div>
 				<div className="tweetHeader">

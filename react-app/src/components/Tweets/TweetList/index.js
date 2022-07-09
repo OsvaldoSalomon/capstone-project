@@ -14,10 +14,10 @@ const TweetList = () => {
     }, [dispatch])
 
     return (
-        <div>
+        <div className='tweetList'>
             {allTweets.map((tweet) => {
                 return (
-                    <TweetCard tweet={tweet}/>
+                    <TweetCard key={tweet.id} tweet={tweet}/>
                     // <div>
                     //     <p>{tweet.user.firstName} {tweet.user.lastName}</p>
                     //     <img src={tweet.user.profilePic}/>

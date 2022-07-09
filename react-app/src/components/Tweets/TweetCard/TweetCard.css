@@ -6,7 +6,7 @@
 	width: 50%;
 	margin-bottom: 1.5em;
 	padding: 3.5em;
-	backdrop-filter: blur(0.59em) saturate(182%);
+	backdrop-filter: blur(1.8em) saturate(110%);
 	-webkit-backdrop-filter: blur(0.59em) saturate(182%);
 	background-color: rgba(194, 220, 255, 0.44);
 	border-radius: 1.5em;
@@ -14,10 +14,6 @@
 	box-sizing: border-box;
 }
 
-/* .tweetProfilePic {
-	width: 10%;
-	border-radius: 40%;
-} */
 .tweetProfilePic {
 	display: inline-block;
 	position: relative;
@@ -26,19 +22,16 @@
 	overflow: hidden;
 	border-radius: 50%;
 }
+
 .tweetProfilePic img {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
 	width: auto;
 	height: 100%;
 	margin-left: -1em;
 }
-
-/* .tweetImageProfile {
-    width: 10%;
-} */
 
 .tweetHeader {
 	display: flex;

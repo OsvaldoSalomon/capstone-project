@@ -3,10 +3,10 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import LoginForm from "./components/auth/LoginForm/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm/SignUpForm";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/Navigation/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
 import TweetList from "./components/Tweets/TweetList";
+import HomePage from "./components/HomePage";
 import User from "./components/User";
 import { authenticate } from "./store/session";
 
@@ -35,14 +35,14 @@ function App() {
 				<Route path="/sign-up" exact={true}>
 					<SignUpForm />
 				</Route>
-				<ProtectedRoute path="/users" exact={true}>
-					<UsersList />
+				<ProtectedRoute path="/tweets" exact={true}>
+					<TweetList />
 				</ProtectedRoute>
 				<ProtectedRoute path="/users/:userId" exact={true}>
 					<User />
 				</ProtectedRoute>
 				<ProtectedRoute path="/" exact={true}>
-					<TweetList />
+					<HomePage />
 				</ProtectedRoute>
 			</Switch>
 		</BrowserRouter>
