@@ -1,0 +1,94 @@
+.loginContainer {
+	margin-top: 12%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.loginForm {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 35em;
+	padding: 3.5em;
+	backdrop-filter: blur(.59em) saturate(182%);
+    -webkit-backdrop-filter: blur(.59em) saturate(182%);
+    background-color: rgba(194, 220, 255, 0.44);
+    border-radius: 1.5em;
+    border: .1em solid rgba( 255, 255, 255, 0.18 );
+	box-sizing: border-box;
+}
+
+.inputBox {
+    display: block;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.563);
+    padding: 0 .6em;
+    margin-top: .3em;
+    font-size: 1em;
+    border: none;
+	border-bottom: 0.1em solid black;
+    border-radius: .2em;
+	height: 3em;
+	width: 20em;
+	margin-right: 1%;
+	margin-bottom: 10%;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.inputBox:focus {
+    display: block;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.563);
+    padding: 0 .6em;
+    margin-top: .3em;
+    font-size: 1em;
+    border: none;
+	border-bottom: 0.1em solid black;
+    border-radius: .2em;
+	height: 3em;
+	width: 20em;
+	margin-right: 1%;
+	margin-bottom: 10%;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.loginButton {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 500;
+	font-size: 1em;
+	background-color: #235fea;
+	color: white;
+	margin-bottom: 2em;
+	border: none;
+	border-radius: 1em;
+	width: 76%;
+	height: 3em;
+}
+
+.loginButton:hover {
+	font-family: "Montserrat", sans-serif;
+	margin-bottom: 2em;
+	font-size: 1em;
+	background-color: #0038bb;
+	color: white;
+	border: none;
+	border-radius: 1em;
+	width: 76%;
+	height: 3em;
+}
+
+.linkSignup {
+	text-decoration: none;
+	color: #0443d5;
+}
+
+.errors {
+	color: white;
+	text-align: center;
+	list-style: none;
+	background-color: #e33333;
+	padding: 0.5em;
+	border-radius: 0.3em;
+}

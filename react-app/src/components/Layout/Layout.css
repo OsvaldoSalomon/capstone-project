@@ -1,0 +1,8 @@
+.layoutBody {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 3em;
+    margin-left: 18em;
+    margin-right: 18em;
+}
