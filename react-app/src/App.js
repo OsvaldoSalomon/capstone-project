@@ -7,6 +7,7 @@ import NavBar from "./components/Navigation/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import TweetList from "./components/Tweets/TweetList";
 import HomePage from "./components/HomePage";
+import Layout from "./components/Layout";
 import User from "./components/User";
 import { authenticate } from "./store/session";
 
@@ -36,7 +37,7 @@ function App() {
 					<SignUpForm />
 				</Route>
 				<ProtectedRoute path="/tweets" exact={true}>
-					<TweetList />
+					<Layout />
 				</ProtectedRoute>
 				<ProtectedRoute path="/users/:userId" exact={true}>
 					<User />
