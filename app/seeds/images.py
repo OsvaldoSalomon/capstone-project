@@ -2,9 +2,11 @@ from app.models import db, Image
 
 def seedImages():
     images = [
-        Image(tweetId=1, url='https://www.pngkey.com/maxpic/u2q8q8o0r5i1r5t4/'),
-        Image(tweetId=2, url='https://www.kindpng.com/imgv/hhiwTxh_second-place-check-first-second-third-prize-hd/'),
-        Image(tweetId=3, url='https://www.shutterstock.com/image-vector/3rd-place-ribbon-vector-design-web-356601005')
+        Image(tweetId=1, url='https://pbs.twimg.com/media/FXG5kfHUIAAlnWn?format=jpg&name=medium'),
+        Image(tweetId=2, url='https://cdn.mos.cms.futurecdn.net/NJXQ8h3mUd9mhsh2m8xpba-1200-80.jpg'),
+        Image(tweetId=3, url='https://pbs.twimg.com/media/FSA1pYQVgAMlIAP?format=jpg&name=4096x4096'),
+        Image(tweetId=4, url='https://pbs.twimg.com/media/FWXUIHPXkAACDQP?format=jpg&name=4096x4096'),
+        Image(tweetId=5, url='https://pbs.twimg.com/media/FVkh5YtWUAknkG8?format=jpg&name=large')
     ]
     
     for image in images:
