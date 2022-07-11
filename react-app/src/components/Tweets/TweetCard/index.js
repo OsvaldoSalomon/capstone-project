@@ -16,11 +16,11 @@ const TweetCard = ({ tweet }) => {
 			<div>
 				<div className="tweetHeader">
 					<h3 className="tweetAuthor">
-						{tweet.user.firstName} {tweet.user.lastName}
+						{tweet?.user.firstName} {tweet?.user.lastName}
 					</h3>
-					<h4 className="tweetUsername">@{tweet.user.username}</h4>
+					<h4 className="tweetUsername">@{tweet?.user.username}</h4>
 					<p className="tweetDate">
-						{new Date(tweet.createdAt).toLocaleDateString(undefined, options)}
+						{new Date(tweet?.createdAt).toLocaleDateString(undefined, options)}
 					</p>
 
 					{/* {sessionUser.id === tweet.author.id ? (
@@ -39,10 +39,10 @@ const TweetCard = ({ tweet }) => {
 					<span></span>
 				)} */}
 				</div>
-				<div className="tweetContent">{tweet.content}</div>
+				<div className="tweetContent">{tweet?.content}</div>
 				<div className="tweetLikesCommentsNumber">
-					<div className="tweetBoxLC">{tweet.likes}</div>
-					<div className="tweetBoxLC">{tweet.comments}</div>
+					<div className="tweetBoxLC">{tweet?.likes}</div>
+					{/*<div className="tweetBoxLC">{tweet?.comments.length()}</div>*/}
 				</div>
 			</div>
 		</div>

@@ -76,7 +76,7 @@ export const addTweet = (data) => async (dispatch) => {
 };
 
 export const updateTweet = (data) => async (dispatch) => {
-	const response = await fetch(`/api/tweets/${data.id}`, {
+	const response = await fetch(`/api/tweets/${data.tweetId}`, {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addTweet } from "../../store/tweets";
+import { addTweet } from "../../../../store/tweets";
 
 const TweetForm = () => {
     const dispatch = useDispatch();

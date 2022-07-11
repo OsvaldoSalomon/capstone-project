@@ -1,7 +1,7 @@
 import TweetList from "../Tweets/TweetList";
 import ProfileCard from "../Profile/ProfileCard";
 import Hashtags from "../Hashtags";
-import TweetForm from "../TweetForm";
+import TweetForm from "../Tweets/TweetForm/CreateTweet";
 import './Layout.css';
 
 const Layout = () => {

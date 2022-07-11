@@ -1,39 +1,40 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTweets } from '../../../store/tweets';
+import { useHistory } from "react-router-dom";
 import TweetCard from '../TweetCard';
 import './TweetList.css';
 
 const TweetList = () => {
     const dispatch = useDispatch()
     const allTweets = useSelector(state => Object.values(state.tweets))
-    // console.log(allTweets)
+    console.log(allTweets)
+    const history = useHistory();
+
+    const onClicked = (tweetId) => {
+        history.push(`/tweets/${tweetId}`)
+    }
 
     useEffect(() => {
         dispatch(getTweets());
     }, [dispatch])
 
-    return (
-        <div className='tweetList'>
-            {allTweets.map((tweet) => {
-                return (
-                    <TweetCard key={tweet.id} tweet={tweet}/>
-                    // <div>
-                    //     <p>{tweet.user.firstName} {tweet.user.lastName}</p>
-                    //     <img src={tweet.user.profilePic}/>
-                    //     <p>{tweet.content}</p>
-                    //     <p>Comments: {tweet.comments}</p>
-                    //     {console.log(tweet.images[0].url)}
-                    //     {tweet.images.map(image => {
-                    //         console.log(image)
-                    //         return <img src={image.url} alt={image} />
-                    //     })}
-                    //     <img src={tweet.images[0].url}/>
-                    // </div>
-                )
-            })}
-        </div>
-    )
+    if (!allTweets) {
+        return <h1>No tweets are being found.</h1>
+    } else {
+        return (
+            <div className='tweetList'>
+                {allTweets.map((tweet) => {
+                    return (
+                        <div onClick={() => onClicked(tweet.id)}>
+                            <TweetCard key={tweet.id} tweet={tweet} />
+                        </div>
+                    )
+                })}
+            </div>
+        )
+    }
+
 }
 
 export default TweetList;
