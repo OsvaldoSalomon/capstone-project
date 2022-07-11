@@ -5,7 +5,6 @@ import LoginForm from "./components/auth/LoginForm/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm/SignUpForm";
 import NavBar from "./components/Navigation/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import TweetList from "./components/Tweets/TweetList";
 import HomePage from "./components/HomePage";
 import Layout from "./components/Layout";
 import User from "./components/User";
