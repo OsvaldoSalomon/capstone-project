@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { eraseComment } from "../../../store/comments";
+import { getComments } from "../../../store/comments";
 
 const DeleteComment = ({ commentId, tweetId }) => {
     const history = useHistory();
@@ -8,7 +9,8 @@ const DeleteComment = ({ commentId, tweetId }) => {
 
     const onClicked = () => {
         dispatch(eraseComment(commentId));
-        history.push(`/tweets/${tweetId}`);
+        dispatch(getComments());
+        // history.push(`/tweets/${tweetId}`);
     }
 
     return <button onClick={onClicked}>Delete Comment</button>

@@ -6,7 +6,7 @@ import DeleteTweet from "../DeleteTweet";
 import EditComment from "../../Comments/CommentForm/EditComment";
 import DeleteComment from "../../Comments/DeleteComment";
 import { useSelector, useDispatch } from "react-redux";
-import { getComments } from "../../../store/comments";
+import { getComments, eraseComment } from "../../../store/comments";
 
 const SingleTweet = () => {
     const { tweetId } = useParams();
@@ -27,6 +27,7 @@ const SingleTweet = () => {
         month: "long",
         day: "numeric",
     };
+
     return (
         <div>
             <EditTweet />
