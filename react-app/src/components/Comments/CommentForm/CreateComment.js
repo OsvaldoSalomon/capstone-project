@@ -1,15 +1,14 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addTweet } from "../../../../store/tweets";
+import { addComment } from "../../../store/comments";
 
-const TweetForm = () => {
+const CreateComment = ({ tweetId }) => {
     const dispatch = useDispatch();
-    const [content, setContent] = useState('');
-    // const [image, setImage] = useState('');
+    const sessionUser = useSelector((state) => state.session.user);
     const [errors, setErrors] = useState([]);
+    const [content, setContent] = useState('');
 
     const updateContent = (e) => setContent(e.target.value);
-    const sessionUser = useSelector((state) => state.session.user);
 
     const reset = () => setContent('');
 
@@ -19,21 +18,19 @@ const TweetForm = () => {
 
         const payload = {
             userId: sessionUser.id,
-            content,
+            tweetId,
+            content
         };
 
         console.log(payload);
 
-        dispatch(addTweet(payload)).catch(async (res) => {
-            const data = await res.json();
-            if (data && data.errors) setErrors(data.errors);
-        });
+        dispatch(addComment(payload))
         reset();
     };
-    
+
     return (
-        <section className="tweetFormContainer">
-            <form className="tweetForm" onSubmit={handleSubmit}>
+        <section className="commentFormContainer">
+            <form className="commentForm" onSubmit={handleSubmit}>
                 <ul className="errorsList">
                     {errors.map((error, idx) => (
                         <li className="errors" key={idx}>
@@ -43,19 +40,19 @@ const TweetForm = () => {
                 </ul>
                 <div className="formContainer">
                     <input
-                        className="tweetInput"
+                        className="commentInput"
                         type="text"
-                        placeholder="What's happening?"
+                        placeholder="Add a comment"
                         value={content}
                         onChange={updateContent}
                     />
-                    <button className="tweetButton" type="submit">
+                    <button className="commentButton" type="submit">
                         Submit
                     </button>
                 </div>
             </form>
         </section>
-    );
+    )
 }
 
-export default TweetForm;
+export default CreateComment;

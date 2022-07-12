@@ -1,11 +1,23 @@
 import { useParams } from "react-router-dom";
 import EditTweet from "../TweetForm/EditTweet";
+import { useEffect } from "react";
+import CreateComment from "../../Comments/CommentForm/CreateComment";
 import DeleteTweet from "../DeleteTweet";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getComments } from "../../../store/comments";
 
 const SingleTweet = () => {
     const { tweetId } = useParams();
     const tweet = useSelector(state => state.tweets[tweetId]);
+    const comments = useSelector(state => Object.values(state.comments));
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getComments())
+    }, [dispatch])
+
+    const tweetComments = comments.filter((comment) => comment.tweetId == tweetId);
+    console.log(tweetComments)
 
     const options = {
         weekday: "long",
@@ -26,13 +38,12 @@ const SingleTweet = () => {
                     {new Date(tweet?.createdAt).toLocaleDateString(undefined, options)}
                 </p>
                 <p>{tweet?.content}</p>
-                {tweet?.comments.map(comment => {
-                    return (
-                        <div>
-                            <p>{comment?.content}</p>
-                        </div>
-                    )
-                })}
+                <div>
+                    {tweetComments.map(comment => {
+                        return <p>{comment.content} by {comment.user.username}</p>
+                    })}
+                </div>
+                <CreateComment tweetId={tweetId} />
 
                 {/* {sessionUser.id === tweet.author.id ? (
             		<div className="buttonsEditDelete">

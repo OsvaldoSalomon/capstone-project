@@ -11,14 +11,14 @@ tweetRoutes =  Blueprint('tweets', __name__)
 @tweetRoutes.route('/')
 def getAllTweets():
     tweets = Tweet.query.all()
-    return { tweet.id: tweet.to_dict() for tweet in tweets }
+    return { tweet.id: tweet.to_dict_all() for tweet in tweets }
 
 @tweetRoutes.route('/<int:id>')
 @login_required
 def getSingleTweet(id):
     singleTweet = Tweet.query.get(id)
     if singleTweet:
-        return singleTweet.to_dict()
+        return singleTweet.to_dict_all()
     else:
         return 'Tweet not found.'
 

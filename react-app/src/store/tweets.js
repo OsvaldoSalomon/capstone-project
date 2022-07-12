@@ -40,17 +40,6 @@ export const getTweets = () => async (dispatch) => {
 	}
 };
 
-export const getTweet = (id) => async (dispatch) => {
-	const response = await fetch(`/api/tweets/${id}`);
-	// console.log("Single Tweets", response);
-
-	if (response.ok) {
-		const singleTweet = await response.json();
-		dispatch(loadTweet(singleTweet));
-		return singleTweet;
-	}
-};
-
 export const addTweet = (data) => async (dispatch) => {
 	const response = await fetch("/api/tweets/new", {
 		method: "POST",

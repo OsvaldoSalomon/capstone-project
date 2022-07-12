@@ -22,9 +22,9 @@ def getSingleComment(id):
     else:
         return 'Comment not found.'
 
-@commentRoutes.route('/<int:tweetId>/new', methods=['POST'])
+@commentRoutes.route('/new', methods=['POST'])
 @login_required
-def createComment(tweetId):
+def createComment():
     form = CommentForm()
     data = form.data
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -32,7 +32,7 @@ def createComment(tweetId):
     if form.validate_on_submit():
         comment = Comment(
             userId = current_user.to_dict()['id'],
-            tweetId = tweetId,
+            tweetId = data['tweetId'],
             content = data['content']
         )
 
