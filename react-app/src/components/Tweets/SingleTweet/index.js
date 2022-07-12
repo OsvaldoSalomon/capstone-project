@@ -3,6 +3,8 @@ import EditTweet from "../TweetForm/EditTweet";
 import { useEffect } from "react";
 import CreateComment from "../../Comments/CommentForm/CreateComment";
 import DeleteTweet from "../DeleteTweet";
+import EditComment from "../../Comments/CommentForm/EditComment";
+import DeleteComment from "../../Comments/DeleteComment";
 import { useSelector, useDispatch } from "react-redux";
 import { getComments } from "../../../store/comments";
 
@@ -40,7 +42,13 @@ const SingleTweet = () => {
                 <p>{tweet?.content}</p>
                 <div>
                     {tweetComments.map(comment => {
-                        return <p>{comment.content} by {comment.user.username}</p>
+                        return (
+                            <div>
+                                <p>{comment.content} by {comment.user.username}</p>
+                                <EditComment commentId={comment.id} />
+                                <DeleteComment tweetId={tweetId} commentId={comment.id} />
+                            </div>
+                        )
                     })}
                 </div>
                 <CreateComment tweetId={tweetId} />

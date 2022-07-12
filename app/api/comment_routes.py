@@ -42,10 +42,10 @@ def createComment():
         return comment.to_dict()
     return {'errors': validationErrorsList(form.errors)}, 401
     
-@commentRoutes.route('/<int:commentId>', methods=['PUT'])
+@commentRoutes.route('/<int:id>', methods=['PUT'])
 @login_required
-def updateComment(commentId):
-    comment = Comment.query.get(commentId)
+def updateComment(id):
+    comment = Comment.query.get(id)
     form = CommentForm()
     data = form.data
     form['csrf_token'].data = request.cookies['csrf_token']
