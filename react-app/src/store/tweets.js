@@ -40,17 +40,6 @@ export const getTweets = () => async (dispatch) => {
 	}
 };
 
-export const getTweet = (id) => async (dispatch) => {
-	const response = await fetch(`/api/tweets/${id}`);
-	// console.log("Single Tweets", response);
-
-	if (response.ok) {
-		const singleTweet = await response.json();
-		dispatch(loadTweet(singleTweet));
-		return singleTweet;
-	}
-};
-
 export const addTweet = (data) => async (dispatch) => {
 	const response = await fetch("/api/tweets/new", {
 		method: "POST",
@@ -76,7 +65,7 @@ export const addTweet = (data) => async (dispatch) => {
 };
 
 export const updateTweet = (data) => async (dispatch) => {
-	const response = await fetch(`/api/tweets/${data.id}`, {
+	const response = await fetch(`/api/tweets/${data.tweetId}`, {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
@@ -109,6 +98,7 @@ export const eraseTweet = (id) => async (dispatch) => {
 
 	if (response.ok) {
 		dispatch(deleteTweet(id));
+		return response;
 	}
 };
 

@@ -18,7 +18,7 @@ def getAllTweets():
 def getSingleTweet(id):
     singleTweet = Tweet.query.get(id)
     if singleTweet:
-        return singleTweet.to_dict()
+        return singleTweet.to_dict_all()
     else:
         return 'Tweet not found.'
 
