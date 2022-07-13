@@ -22,27 +22,10 @@ const TweetCard = ({ tweet }) => {
 					<p className="tweetDate">
 						{new Date(tweet?.createdAt).toLocaleDateString(undefined, options)}
 					</p>
-
-					{/* {sessionUser.id === tweet.author.id ? (
-					<div className="buttonsEditDelete">
-						<button
-							className="deleteBtn"
-							onClick={() => dispatch(deletetweet(tweet.id))}
-						>
-							<i className="fas fa-trash-alt"></i>
-						</button>
-						<button className="editBtn" onClick={handleEditButton}>
-							<i className="fas fa-edit"></i>
-						</button>
-					</div>
-				) : (
-					<span></span>
-				)} */}
 				</div>
 				<div className="tweetContent">{tweet?.content}</div>
 				<div className="tweetLikesCommentsNumber">
-					<div className="tweetBoxLC">{tweet?.likes}</div>
-					{/*<div className="tweetBoxLC">{tweet?.comments.length()}</div>*/}
+					<div className="tweetBoxLC">Comments: {tweet?.comments}</div>
 				</div>
 			</div>
 		</div>

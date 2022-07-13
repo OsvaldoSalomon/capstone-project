@@ -1,25 +1,29 @@
 import { useParams } from "react-router-dom";
-import EditTweet from "../TweetForm/EditTweet";
 import { useEffect } from "react";
-import CreateComment from "../../Comments/CommentForm/CreateComment";
-import DeleteTweet from "../DeleteTweet";
-import EditComment from "../../Comments/CommentForm/EditComment";
-import DeleteComment from "../../Comments/DeleteComment";
 import { useSelector, useDispatch } from "react-redux";
 import { getComments, eraseComment } from "../../../store/comments";
+import { getTweets, eraseTweet } from "../../../store/tweets";
+import EditTweet from "../TweetForm/EditTweet";
+import CreateComment from "../../Comments/CommentForm/CreateComment";
+import EditComment from "../../Comments/CommentForm/EditComment";
+import './SingleTweet.css';
 
 const SingleTweet = () => {
-    const { tweetId } = useParams();
-    const tweet = useSelector(state => state.tweets[tweetId]);
-    const comments = useSelector(state => Object.values(state.comments));
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getComments())
-    }, [dispatch])
+    const { tweetId } = useParams();
+    const sessionUser = useSelector((state) => state.session.user);
+    const comments = useSelector(state => Object.values(state.comments));
+    const tweets = useSelector(state => Object.values(state.tweets));
 
     const tweetComments = comments.filter((comment) => comment.tweetId == tweetId);
-    console.log(tweetComments)
+    const currentTweetFiltered = tweets.filter(current => current?.id == tweetId);
+    const currentTweet = currentTweetFiltered[0];
+    const image = currentTweet.images[0];
+
+    useEffect(() => {
+        dispatch(getTweets());
+        dispatch(getComments());
+    }, [dispatch])
 
     const options = {
         weekday: "long",
@@ -29,46 +33,40 @@ const SingleTweet = () => {
     };
 
     return (
-        <div>
-            <EditTweet />
-            <DeleteTweet tweetId={tweetId} />
+        <div className='singleTweetBody'>
+            {sessionUser.id === currentTweet.user.id ? (
+                <div>
+                    <EditTweet />
+                    <button onClick={() => dispatch(eraseTweet(tweetId))}>Delete Tweet</button>
+                </div>
+            ) : <span></span>}
             <div className="singleTweetHeader">
                 <h3 className="tweetAuthor">
-                    {tweet?.user.firstName} {tweet?.user.lastName}
+                    {currentTweet?.user.firstName} {currentTweet?.user.lastName}
                 </h3>
-                <h4 className="tweetUsername">@{tweet?.user.username}</h4>
+                <h4 className="tweetUsername">@{currentTweet?.user.username}</h4>
                 <p className="tweetDate">
-                    {new Date(tweet?.createdAt).toLocaleDateString(undefined, options)}
+                    {new Date(currentTweet?.createdAt).toLocaleDateString(undefined, options)}
                 </p>
-                <p>{tweet?.content}</p>
+                <p>{currentTweet?.content}</p>
+                {image && <img className='tweetImage' src={image.url} alt='image' />}
                 <div>
                     {tweetComments.map(comment => {
                         return (
                             <div>
                                 <p>{comment.content} by {comment.user.username}</p>
-                                <EditComment commentId={comment.id} />
-                                <DeleteComment tweetId={tweetId} commentId={comment.id} />
+                                {sessionUser.id === comment.user.id ? (
+                                    <div>
+                                        <EditComment commentId={comment.id} />
+                                        <button onClick={() => dispatch(eraseComment(comment.id))}>Delete Comment</button>
+                                    </div>
+                                    ): <span></span>}
+
                             </div>
                         )
                     })}
                 </div>
                 <CreateComment tweetId={tweetId} />
-
-                {/* {sessionUser.id === tweet.author.id ? (
-            		<div className="buttonsEditDelete">
-            			<button
-            				className="deleteBtn"
-            				onClick={() => dispatch(deletetweet(tweet.id))}
-            			>
-            				<i className="fas fa-trash-alt"></i>
-            			</button>
-            			<button className="editBtn" onClick={handleEditButton}>
-            				<i className="fas fa-edit"></i>
-            			</button>
-            		</div>
-            	) : (
-            		<span></span>
-            	)} */}
             </div>
         </div>
     )

@@ -98,6 +98,7 @@ export const eraseTweet = (id) => async (dispatch) => {
 
 	if (response.ok) {
 		dispatch(deleteTweet(id));
+		return response;
 	}
 };
 

@@ -93,6 +93,7 @@ export const eraseComment = (id) => async (dispatch) => {
 
     if (response.ok) {
         dispatch(deleteComment(id));
+        return response;
     }
 };
 

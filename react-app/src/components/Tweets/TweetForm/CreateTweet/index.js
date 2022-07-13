@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addTweet } from "../../../../store/tweets";
+import './CreateTweet.css';
 
 const TweetForm = () => {
     const dispatch = useDispatch();

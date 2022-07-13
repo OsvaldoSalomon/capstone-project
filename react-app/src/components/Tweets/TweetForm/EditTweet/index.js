@@ -36,8 +36,8 @@ const EditTweet = () => {
 
     return (
         <div className='editTweetBody'>
-            <section className="tweetFormContainer">
-                <form className="tweetForm" onSubmit={handleSubmit}>
+            <section className="tweetEditFormContainer">
+                <form className="tweetEditForm" onSubmit={handleSubmit}>
                     <ul className="errorsList">
                         {errors.map((error, idx) => (
                             <li className="errors" key={idx}>

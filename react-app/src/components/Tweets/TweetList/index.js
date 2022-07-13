@@ -8,7 +8,6 @@ import './TweetList.css';
 const TweetList = () => {
     const dispatch = useDispatch()
     const allTweets = useSelector(state => Object.values(state.tweets))
-    console.log(allTweets)
     const history = useHistory();
 
     const onClicked = (tweetId) => {

@@ -8,7 +8,7 @@ const Layout = () => {
     return (
         <div className='layoutBody'>
             <ProfileCard />
-            <div>
+            <div className='layoutCenter'>
                 <TweetForm />
                 <TweetList />
             </div>
