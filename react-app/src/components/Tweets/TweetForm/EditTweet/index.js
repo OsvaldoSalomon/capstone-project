@@ -1,14 +1,12 @@
 import { useState } from 'react';
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { updateTweet } from "../../../../store/tweets";
 import './EditTweet.css'
 
-const EditTweet = () => {
+const EditTweet = ({ tweet }) => {
     const dispatch = useDispatch();
-    const history = useHistory();
     const { tweetId } = useParams();
-    const tweet = useSelector(state => state.tweets[tweetId]);
     const sessionUser = useSelector((state) => state.session.user);
     const [contentInput, setContent] = useState(tweet?.content);
     // const [image, setImage] = useState('');
@@ -30,7 +28,6 @@ const EditTweet = () => {
 
         await dispatch(updateTweet(payload)).then(
             () => console.log(payload),
-            history.push('/tweets')
         )
     };
 
