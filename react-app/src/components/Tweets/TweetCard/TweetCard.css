@@ -1,42 +1,52 @@
-.tweetBody {
+.tweet {
 	display: flex;
-	justify-content: center;
-	align-items: flex-start;
-	flex-direction: row;
+	width: 50em;
+	padding: 1em 1.5em;
+	margin-bottom: 1.5em;
 	margin-right: 1.5em;
 	margin-left: 1.5em;
-	width: 50em;
-	margin-bottom: 1.5em;
-	padding: 3.5em;
-	backdrop-filter: blur(1.8em) saturate(110%);
-	-webkit-backdrop-filter: blur(0.59em) saturate(182%);
+	font-size: 1.2em;
+	backdrop-filter: blur(.59em) saturate(182%);
+	-webkit-backdrop-filter: blur(.59em) saturate(182%);
 	background-color: rgba(194, 220, 255, 0.44);
 	border-radius: 1.5em;
-	border: 0.1em solid rgba(255, 255, 255, 0.18);
+	border: .1em solid rgba( 255, 255, 255, 0.18 );
 	box-sizing: border-box;
 }
 
-.tweetProfilePic {
-	display: inline-block;
-	position: relative;
-	width: 4em;
-	margin-right: 1em;
-	height: 4em;
-	overflow: hidden;
+.tweet__author-logo {
+	width: 3em;
+	height: 3em;
 	border-radius: 50%;
+	margin-right: 10px;
 }
 
-.tweetProfilePic img {
+.tweet__header {
 	display: flex;
-	justify-content: center;
-	align-content: center;
-	align-items: center;
-	width: auto;
-	height: 100%;
-	margin-left: -1em;
+	margin-bottom: 0.3em;
+	align-items: stretch;
 }
 
-.tweetHeader {
-	display: flex;
-	justify-content: space-between;
+.tweet__author-name {
+	font-size: 15px;
+	font-weight: 700;
+	color: #14171a;
+	margin-right: 5px;
+}
+
+.tweet__author-slug {
+	color: #323840;
+	font-size: 15px;
+	margin-left: 1em;
+}
+
+.tweet__publish-time {
+	margin-left: 5px;
+	color: #657786;
+}
+
+.tweet__image {
+	width: 100%;
+	border-radius: 15px;
+	margin-top: 10px;
 }
