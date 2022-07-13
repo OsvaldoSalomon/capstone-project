@@ -1,8 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getComments, eraseComment } from "../../../store/comments";
+import { getComments } from "../../../store/comments";
 import { getTweets, eraseTweet } from "../../../store/tweets";
+import DeleteComment from "../../Comments/DeleteComment";
+import DeleteTweet from "../DeleteTweet";
 import EditTweet from "../TweetForm/EditTweet";
 import CreateComment from "../../Comments/CommentForm/CreateComment";
 import EditComment from "../../Comments/CommentForm/EditComment";
@@ -18,7 +20,7 @@ const SingleTweet = () => {
     const tweetComments = comments.filter((comment) => comment.tweetId == tweetId);
     const currentTweetFiltered = tweets.filter(current => current?.id == tweetId);
     const currentTweet = currentTweetFiltered[0];
-    const image = currentTweet.images[0];
+    const image = currentTweet?.images[0];
 
     useEffect(() => {
         dispatch(getTweets());
@@ -34,10 +36,11 @@ const SingleTweet = () => {
 
     return (
         <div className='singleTweetBody'>
-            {sessionUser.id === currentTweet.user.id ? (
+            {sessionUser.id === currentTweet?.user.id ? (
                 <div>
-                    <EditTweet />
-                    <button onClick={() => dispatch(eraseTweet(tweetId))}>Delete Tweet</button>
+                    <EditTweet tweet={currentTweet} />
+                    <DeleteTweet tweetId={tweetId} />
+                    {/*<button onClick={() => dispatch(eraseTweet(tweetId))}>Delete Tweet</button>*/}
                 </div>
             ) : <span></span>}
             <div className="singleTweetHeader">
@@ -49,7 +52,7 @@ const SingleTweet = () => {
                     {new Date(currentTweet?.createdAt).toLocaleDateString(undefined, options)}
                 </p>
                 <p>{currentTweet?.content}</p>
-                {image && <img className='tweetImage' src={image.url} alt='image' />}
+                {image && <img className='tweetImage' src={image?.url} alt='image' />}
                 <div>
                     {tweetComments.map(comment => {
                         return (
@@ -58,9 +61,9 @@ const SingleTweet = () => {
                                 {sessionUser.id === comment.user.id ? (
                                     <div>
                                         <EditComment commentId={comment.id} />
-                                        <button onClick={() => dispatch(eraseComment(comment.id))}>Delete Comment</button>
+                                        <DeleteComment commentId={comment.id} />
                                     </div>
-                                    ): <span></span>}
+                                ) : <span></span>}
 
                             </div>
                         )
