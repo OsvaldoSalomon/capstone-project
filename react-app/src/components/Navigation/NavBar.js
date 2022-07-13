@@ -5,52 +5,40 @@ import LogoutButton from "../auth/LogoutButton";
 import './NavBar.css'
 
 const NavBar = () => {
-	const sessionUser = useSelector((state) => state.session.user);
+    const sessionUser = useSelector((state) => state.session.user);
 
-	let sessionLinks;
+    let sessionLinks;
 
-	if (sessionUser) {
-		sessionLinks = (
-			<>
-				<NavLink to="/tweets" exact={true} activeClassName="active">
-					Tweets
-				</NavLink>
-        <LogoutButton />
-			</>
-		);
-	} else {
-		<>
-			<NavLink to="/login" exact={true} activeClassName="active">
-				Login
-			</NavLink>
-			<NavLink to="/sign-up" exact={true} activeClassName="active">
-				Sign Up
-			</NavLink>
-		</>;
-	}
+    if (sessionUser) {
+        sessionLinks = (
+            <>
+                <NavLink to="/tweets" exact={true} activeClassName="active">
+                    Tweets
+                </NavLink>
+                <LogoutButton />
+            </>
+        );
+    } else {
+        <>
+            <NavLink to="/login" exact={true} activeClassName="active">
+                Login
+            </NavLink>
+            <NavLink to="/sign-up" exact={true} activeClassName="active">
+                Sign Up
+            </NavLink>
+        </>;
+    }
 
-	return (
-		<div className="navBar">
-			<div className="navLinks">
-				<NavLink className="logoLink" exact to="/">
-					<div className="logo">TwittR</div>
-				</NavLink>
-				{sessionLinks}
-			</div>
-		</div>
-		// <div>
-		// 	<NavLink to="/" exact={true} activeClassName="active">
-		// 		Home
-		// 	</NavLink>
-		// 	<NavLink to="/login" exact={true} activeClassName="active">
-		// 		Login
-		// 	</NavLink>
-		// 	<NavLink to="/sign-up" exact={true} activeClassName="active">
-		// 		Sign Up
-		// 	</NavLink>
-		// 	<LogoutButton />
-		// </div>
-	);
+    return (
+        <div className="navBar">
+            <div className="navLinks">
+                <NavLink className="logoLink" exact to="/">
+                    <div className="logo">Twitterium</div>
+                </NavLink>
+                {sessionLinks}
+            </div>
+        </div>
+    );
 };
 
 export default NavBar;

@@ -18,18 +18,17 @@
 	width: 3em;
 	height: 3em;
 	border-radius: 50%;
-	margin-right: 10px;
+	margin-right: 1em;
 }
 
 .tweet__header {
 	display: flex;
 	margin-bottom: 0.3em;
-	align-items: stretch;
+	align-items: center;
 }
 
 .tweet__author-name {
-	font-size: 15px;
-	font-weight: 700;
+	font-weight: 900;
 	color: #14171a;
 	margin-right: 5px;
 }
@@ -45,8 +44,14 @@
 	color: #657786;
 }
 
+.tweet__content {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
 .tweet__image {
 	width: 100%;
-	border-radius: 15px;
-	margin-top: 10px;
+	height: 80%;
+	margin-top: 1em;
+	border-radius: 1.5em;
 }
