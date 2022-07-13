@@ -8,7 +8,7 @@ from .error_helper import validationErrorsList
 commentRoutes = Blueprint('comments', __name__)
 
 
-@commentRoutes.route('/')
+@commentRoutes.route('')
 def getAllComments():
     comments = Comment.query.all()
     return { comment.id: comment.to_dict() for comment in comments }
