@@ -8,7 +8,7 @@ from .error_helper import validationErrorsList
 
 tweetRoutes =  Blueprint('tweets', __name__)
 
-@tweetRoutes.route('/')
+@tweetRoutes.route('')
 def getAllTweets():
     tweets = Tweet.query.all()
     return { tweet.id: tweet.to_dict_all() for tweet in tweets }
