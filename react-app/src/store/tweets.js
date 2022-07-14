@@ -103,10 +103,9 @@ export const eraseTweet = (id) => async (dispatch) => {
 };
 
 export const uploadImage = (imageData) => async (dispatch) => {
-	const { url, tweetId, image } = imageData;
+	const { tweetId, image } = imageData;
 
 	const formData = new FormData();
-	formData.append("url", url);
 	formData.append("tweetId", tweetId);
 	formData.append("image", image);
 
