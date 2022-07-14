@@ -1,3 +1,4 @@
+import { FaComment } from 'react-icons/fa';
 import "./TweetCard.css";
 
 const TweetCard = ({ tweet }) => {
@@ -5,22 +6,24 @@ const TweetCard = ({ tweet }) => {
 
     return (
         <div className="tweet">
-            <img className="tweet__author-logo" src={tweet.user.profilePic} alt={tweet.user.username} />
-            <div className='tweet__main'>
-                <div className="tweet__header">
-                    <div className="tweet__author-name">
+            <img className="tweetAuthorLogo" src={tweet.user.profilePic} alt={tweet.user.username} />
+            <div className='tweetMain'>
+                <div className="tweetHeader">
+                    <div className="tweetAuthorName">
                         {tweet?.user.firstName} {tweet?.user.lastName}
                     </div>
-                    <div className="tweet__author-slug">
+                    <div className="tweetAuthorSlug">
                         @{tweet?.user.username}
                     </div>
                 </div>
-                <div className="tweet__content">
+                <div className="tweetContent">
                     {tweet?.content}
                     {image && <img className='tweet__image' src={image?.url} alt='image' />}
                 </div>
                 <div className="tweetLikesCommentsNumber">
-                    <div className="tweetBoxLC">Comments: {tweet?.comments}</div>
+                    <div className="tweetBoxLC">
+                        <FaComment className='commentIcon' /> {tweet?.comments}
+                    </div>
                 </div>
             </div>
         </div>

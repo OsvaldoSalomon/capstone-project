@@ -47,7 +47,7 @@ const CreateComment = ({ tweetId }) => {
                         onChange={updateContent}
                     />
                     <button className="commentButton" type="submit">
-                        Submit
+                        Reply
                     </button>
                 </div>
             </form>

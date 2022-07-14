@@ -17,13 +17,14 @@ const LoginForm = () => {
         const errors = [];
         if (email.length == 0) errors.push("Must provide a value for the email.");
         if (!emailRegex.test(email)) errors.push("Must provide a valid email.");
-        if (password.length == 0)
-            errors.push("Must provide a value for the password.");
+        if (password.length == 0) errors.push("Must provide a value for the password.");
+        if (password.length <= 7) errors.push("Password must be longer than 8 characters.");
         setErrors(errors);
     }, [email, password]);
 
     const onLogin = async (e) => {
         e.preventDefault();
+        setHasSubmitted(true);
 
         if (errors.length <= 0) {
             const data = await dispatch(login(email, password));
@@ -42,7 +43,7 @@ const LoginForm = () => {
     };
 
     if (user) {
-        return <Redirect to="/" />;
+        return <Redirect to="/tweets" />;
     }
 
     return (
@@ -51,9 +52,9 @@ const LoginForm = () => {
                 <h1>Login</h1>
                 <div>
                     {hasSubmitted && errors.map((error, ind) => (
-                        <div className="errors" key={ind}>
+                        <p className="errors" key={ind}>
                             {error}
-                        </div>
+                        </p>
                     ))}
                 </div>
                 <div>
