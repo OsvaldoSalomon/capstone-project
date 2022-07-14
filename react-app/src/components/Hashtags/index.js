@@ -6,7 +6,7 @@ const Hashtags = () => {
         '#cute ', '#tbt ',]
     return (
         <div className='hashtagBody'>
-            <h2>Most Popular Tags</h2>
+            <h2>More profiles</h2>
             {tags.map(tag => {
                 return (
                     <>

@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getComments } from "../../../store/comments";
-import { getTweets, eraseTweet } from "../../../store/tweets";
+import { getTweets } from "../../../store/tweets";
 import DeleteComment from "../../Comments/DeleteComment";
 import DeleteTweet from "../DeleteTweet";
 import EditTweet from "../TweetForm/EditTweet";
@@ -40,35 +40,52 @@ const SingleTweet = () => {
                 <div>
                     <EditTweet tweet={currentTweet} />
                     <DeleteTweet tweetId={tweetId} />
-                    {/*<button onClick={() => dispatch(eraseTweet(tweetId))}>Delete Tweet</button>*/}
                 </div>
             ) : <span></span>}
-            <div className="singleTweetHeader">
-                <h3 className="tweetAuthor">
-                    {currentTweet?.user.firstName} {currentTweet?.user.lastName}
-                </h3>
-                <h4 className="tweetUsername">@{currentTweet?.user.username}</h4>
+            <div>
+                <div className="singleTweetHeader">
+                    <img className="tweetProfileImage" src={currentTweet.user.profilePic}
+                         alt={currentTweet.user.username} />
+                    <h3 className="tweetAuthor">
+                        {currentTweet?.user.firstName} {currentTweet?.user.lastName}
+                    </h3>
+                    <h4 className="tweetUsername">@{currentTweet?.user.username}</h4>
+                </div>
+                <h2>{currentTweet?.content}</h2>
+                {image && <img className='tweetImage' src={image?.url} alt='image' />}
                 <p className="tweetDate">
                     {new Date(currentTweet?.createdAt).toLocaleDateString(undefined, options)}
                 </p>
-                <p>{currentTweet?.content}</p>
-                {image && <img className='tweetImage' src={image?.url} alt='image' />}
+                <hr />
                 <div>
+                    <CreateComment tweetId={tweetId} />
                     {tweetComments.map(comment => {
                         return (
-                            <div>
-                                <p>{comment.content} by {comment.user.username}</p>
-                                {sessionUser.id === comment.user.id ? (
-                                    <div>
-                                        <EditComment commentId={comment.id} />
-                                        <DeleteComment commentId={comment.id} />
+                            <div className='comment'>
+                                <img className="commentProfileImage" src={comment.user.profilePic} />
+                                <div className='commentMain'>
+                                    <div className='commentHeader'>
+                                        <div className='commentAuthorName'>
+                                            {comment?.user.firstName} {comment.user.lastName}
+                                        </div>
+                                        <div className="commentAuthorSlug">
+                                            @{comment?.user.username}
+                                        </div>
                                     </div>
-                                ) : <span></span>}
+                                    <div className='commentContent'>
+                                        {comment?.content}
+                                        {sessionUser.id === comment?.user.id ? (
+                                            <div>
+                                                <EditComment commentId={comment?.id} />
+                                                <DeleteComment commentId={comment?.id} />
+                                            </div>
+                                        ) : <span></span>}
+                                    </div>
+                                </div>
                             </div>
                         )
                     })}
                 </div>
-                <CreateComment tweetId={tweetId} />
             </div>
         </div>
     )

@@ -1,6 +1,7 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+import datetime
 
 
 class User(db.Model, UserMixin):
@@ -11,7 +12,7 @@ class User(db.Model, UserMixin):
     firstName = db.Column(db.String(40), nullable=False)
     lastName = db.Column(db.String(40), nullable=False)
     birthday = db.Column(db.DateTime, nullable=False)
-    bio = db.Column(db.String(255), nullable=False)
+    bio = db.Column(db.String(255), nullable=False, default=datetime.datetime.now())
     profilePic = db.Column(db.String(255), default='https://images.unsplash.com/photo-1641423914598-288fee6cecf2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80')
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
@@ -48,5 +49,6 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'firstName': self.firstName,
             'lastName': self.lastName,
+            'bio': self.bio,
             'profilePic': self.profilePic
         }

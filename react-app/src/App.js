@@ -7,7 +7,8 @@ import NavBar from "./components/Navigation/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import HomePage from "./components/HomePage";
 import Layout from "./components/Layout";
-import SingleTweet from "./components/Tweets/SingleTweet";
+// import SingleTweet from "./components/Tweets/SingleTweet";
+import SingleTweetLayout from "./components/Tweets/SingleTweetLayout";
 import User from "./components/User";
 import { authenticate } from "./store/session";
 
@@ -40,7 +41,7 @@ function App() {
                     <Layout />
                 </ProtectedRoute>
                 <ProtectedRoute path='/tweets/:tweetId' exact={true}>
-                    <SingleTweet />
+                    <SingleTweetLayout />
                 </ProtectedRoute>
                 <ProtectedRoute path="/users/:userId" exact={true}>
                     <User />
