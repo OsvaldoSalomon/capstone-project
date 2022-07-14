@@ -7,12 +7,13 @@ import './Layout.css';
 const Layout = () => {
     return (
         <div className='layoutBody'>
-            <ProfileCard />
+            <ProfileCard className='profileLayout' />
+            {/*<div className='spacingDiv'></div>*/}
             <div className='layoutCenter'>
                 <TweetForm />
                 <TweetList />
             </div>
-            <Hashtags />
+            <Hashtags className='usersLayout' />
         </div>
     )
 }

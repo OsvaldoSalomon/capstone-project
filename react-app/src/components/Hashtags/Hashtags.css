@@ -3,6 +3,8 @@
     margin-top: 1em;
     margin-bottom: 1.5em;
     padding: 3.5em;
+    position: fixed;
+    right: 7%;
     backdrop-filter: blur(.59em) saturate(182%);
     -webkit-backdrop-filter: blur(.59em) saturate(182%);
     background-color: rgba(194, 220, 255, 0.44);
