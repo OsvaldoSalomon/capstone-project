@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { eraseTweet } from "../../../store/tweets";
+import { eraseTweet, getTweets } from "../../../store/tweets";
 
 const DeleteTweet = ({ tweetId }) => {
     const history = useHistory();
@@ -8,6 +8,7 @@ const DeleteTweet = ({ tweetId }) => {
 
     const onClicked = () => {
         dispatch(eraseTweet(tweetId));
+        dispatch(getTweets());
         history.push('/tweets');
     }
 
