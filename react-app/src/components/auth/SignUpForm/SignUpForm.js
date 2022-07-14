@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../../store/session";
 import "./SignUp.css";
 
 const SignUpForm = () => {
-    const [errors, setErrors] = useState([]);
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [firstName, setFirstName] = useState("");
@@ -15,11 +14,28 @@ const SignUpForm = () => {
     const [profilePic, setProfilePic] = useState("");
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
+    const [errors, setErrors] = useState([]);
+    const [hasSubmitted, setHasSubmitted] = useState(false);
+    const emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
     const user = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        const errors = [];
+        if (username.length === 0) errors.push("Must provide a value for the username.");
+        if (email.length === 0) errors.push("Must provide a value for the email.");
+        if (!emailRegex.test((email))) errors.push("Must provide a valid email.");
+        if (password.length === 0)
+            errors.push("Must provide a value for the password.");
+        if (repeatPassword.length === 0) errors.push("Must repeat the password.");
+        if (repeatPassword !== password) errors.push("Passwords do not match.");
+        setErrors(errors);
+    }, [email, password, repeatPassword]);
+
     const onSignUp = async (e) => {
         e.preventDefault();
+        setHasSubmitted(true);
+
         const userData = {
             username,
             firstName,
@@ -31,10 +47,11 @@ const SignUpForm = () => {
             password,
         };
 
-        console.log("ON SIGN UP", userData);
+        // console.log("ON SIGN UP", userData);
 
-        if (password === repeatPassword) {
+        if (errors.length <= 0) {
             const data = await dispatch(signUp(userData));
+            console.log(data);
             if (data) {
                 setErrors(data);
             }
@@ -86,12 +103,13 @@ const SignUpForm = () => {
             <form className="signUpForm" onSubmit={onSignUp}>
                 <h1>Sign Up</h1>
                 <div>
-                    {errors.map((error, ind) => (
-                        <div key={ind}>{error}</div>
+                    {hasSubmitted && errors.map((error, ind) => (
+                        <p className="errors" key={ind}>{error}</p>
                     ))}
                 </div>
                 <div>
                     <input
+                        required={true}
                         className="inputBox"
                         type="text"
                         name="username"
@@ -102,6 +120,7 @@ const SignUpForm = () => {
                 </div>
                 <div>
                     <input
+                        required={true}
                         className="inputBox"
                         placeholder="First Name"
                         type="text"
@@ -112,6 +131,7 @@ const SignUpForm = () => {
                 </div>
                 <div>
                     <input
+                        required={true}
                         className="inputBox"
                         placeholder="Last Name"
                         type="text"
@@ -122,6 +142,7 @@ const SignUpForm = () => {
                 </div>
                 <div>
                     <input
+                        required={true}
                         className="inputBox"
                         placeholder="Birthday"
                         type="date"
@@ -132,6 +153,7 @@ const SignUpForm = () => {
                 </div>
                 <div>
                     <input
+                        required={true}
                         className="inputBox"
                         placeholder="Bio"
                         type="text"
@@ -142,6 +164,7 @@ const SignUpForm = () => {
                 </div>
                 <div>
                     <input
+                        required={true}
                         className="inputBox"
                         placeholder="Email"
                         type="text"
@@ -152,6 +175,7 @@ const SignUpForm = () => {
                 </div>
                 <div>
                     <input
+                        required={true}
                         className="inputBox"
                         placeholder="Password"
                         type="password"
