@@ -31,6 +31,7 @@ const TweetForm = () => {
         const errors = [];
         if (content.length == 0) errors.push('Please provide a content')
         if (content.length <= 4) errors.push('Tweet content must be greater than 3');
+        if (content.length >= 250) errors.push('Tweet content must be greater than 3');
         setErrors(errors);
     }, [content]);
 

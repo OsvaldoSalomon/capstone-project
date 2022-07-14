@@ -1,0 +1,77 @@
+.homePageBody {
+    margin-top: 5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.homeTitle {
+    color: white;
+    font-size: 4em;
+}
+
+.homeSubtitle {
+    color: #afafaf;
+    font-size: 3em;
+}
+
+.linkTweets {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 1em;
+    background-color: #235fea;
+    color: white;
+    text-decoration: none;
+    padding: 1em;
+    border-radius: 1em;
+}
+
+.demoLoginButton{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 1em;
+    background-color: #235fea;
+    color: white;
+    text-align: center;
+    margin-right: 2em;
+    border: none;
+    border-radius: 1em;
+    height: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.demoLoginButton:hover {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 1em;
+    background-color: #0049e3;
+    color: white;
+    margin-right: 2em;
+    border: none;
+    border-radius: 1em;
+    height: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.homeImage {
+    width: 30%;
+    border-radius: 1em;
+    margin-top: 3em;
+}
+
+.homeContact {
+    color: white;
+}
+
+.contactLinks {
+    display: flex;
+    gap: 2em;
+}
+
+.iconLink {
+    width: 2.5em;
+    height: 2.5em;
+    color: white;
+}

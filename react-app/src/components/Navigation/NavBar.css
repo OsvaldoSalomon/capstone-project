@@ -48,31 +48,31 @@
 
 .logo {
     text-decoration: none;
-    color: black;
+    color: white;
     font-weight: bold;
     font-size: 1.5em;
 }
 
 .linkQuestions {
-    background-color: white;
-	color: dodgerblue;
-	padding: .5em;
-    text-align: center;
-    height: 1em;
-    text-decoration: none;
-	border: 1px solid dodgerblue;
-	border-radius: 1em;
 	font-family: 'Montserrat', sans-serif;
+	background-color: #235fea;
+	color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: .4em;
+    border-radius: 1em;
 }
 
 .linkQuestions:hover {
-    background-color: dodgerblue;
-	color: white;
-	padding: .5em;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #0049e3;
+    color: white;
     text-align: center;
-    height: 1em;
     text-decoration: none;
-	border: 1px solid dodgerblue;
-	border-radius: 1em;
-	font-family: 'Montserrat', sans-serif;
+    padding: .4em;
+    border-radius: 1em;
+}
+
+.allTweetsLink {
+
 }

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addComment } from "../../../store/comments";
+import './CreateComment.css';
 
 const CreateComment = ({ tweetId }) => {
     const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const CreateComment = ({ tweetId }) => {
 
     return (
         <section className="commentFormContainer">
+            <img className="tweetFormAuthorLogo" src={sessionUser.profilePic} alt={sessionUser.username} />
             <form className="commentForm" onSubmit={handleSubmit}>
                 <ul className="errorsList">
                     {errors.map((error, idx) => (
@@ -38,11 +40,11 @@ const CreateComment = ({ tweetId }) => {
                         </li>
                     ))}
                 </ul>
-                <div className="formContainer">
+                <div className="commentInputContainer">
                     <input
                         className="commentInput"
                         type="text"
-                        placeholder="Add a comment"
+                        placeholder="Tweet your reply"
                         value={content}
                         onChange={updateContent}
                     />

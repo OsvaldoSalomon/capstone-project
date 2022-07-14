@@ -1,0 +1,27 @@
+.logoutButton {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 1em;
+    background-color: #235fea;
+    color: white;
+    margin-right: 2em;
+    border: none;
+    border-radius: 1em;
+    height: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.logoutButton:hover {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 1em;
+    background-color: #0049e3;
+    color: white;
+    margin-right: 2em;
+    border: none;
+    border-radius: 1em;
+    height: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
