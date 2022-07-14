@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addTweet, uploadImage } from "../../../../store/tweets";
+import { useHistory } from "react-router-dom";
+import { BsImage } from 'react-icons/bs';
 import './CreateTweet.css';
 
 const TweetForm = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user);
     const [content, setContent] = useState('');
     const [image, setImage] = useState(null);
@@ -12,10 +15,16 @@ const TweetForm = () => {
     const [errors, setErrors] = useState([]);
 
     const updateContent = (e) => setContent(e.target.value);
+
     const updateImage = (e) => {
         const file = e.target.files[0];
         setImage(file);
     }
+
+    const removeImage = () => {
+        setImage(null);
+    }
+
     const reset = () => setContent('');
 
     useEffect(() => {
@@ -41,15 +50,14 @@ const TweetForm = () => {
                 tweetId: newTweet.id
             }
             await dispatch(uploadImage(payloadImage))
-            if (newTweet) {
-                setErrors(newTweet);
-            }
             reset();
+            history.push(`/tweets/${newTweet.id}`);
         }
     };
 
     return (
         <section className="tweetFormContainer">
+            <img className="tweetFormAuthorLogo" src={sessionUser.profilePic} alt={sessionUser.username} />
             <form className="tweetForm" onSubmit={handleSubmit}>
                 <div className="errorsList">
                     {hasSubmitted && errors.map((error, idx) => (
@@ -60,17 +68,26 @@ const TweetForm = () => {
                 </div>
                 <div className="formContainer">
                     <input
-                        className="tweetInput"
+                        className="createTweetInput"
                         type="text"
                         placeholder="What's happening?"
                         value={content}
                         onChange={updateContent}
                     />
                 </div>
-                <input type="file" accept="image/png, image/jpeg" value={image} onChange={updateImage} />
-                <button className="tweetButton" type="submit">
-                    Post Tweet
-                </button>
+                <div className='tweetFormInputButton'>
+                    <div className='tweetFormImageUploadInput'>
+                        <label className="custom-file-upload">
+                            <input id="inputTag" type="file" name='file'
+                                   accept="image/png, image/jpeg, image/jpg" onChange={updateImage} />
+                            <BsImage className='iconImageUpload' />
+                        </label>
+                        <p onClick={removeImage}>{image?.name}</p>
+                    </div>
+                    <button className="tweetButton" type="submit">
+                        Tweet
+                    </button>
+                </div>
             </form>
         </section>
     );
