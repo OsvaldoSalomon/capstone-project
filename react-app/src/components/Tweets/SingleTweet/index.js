@@ -59,6 +59,7 @@ const SingleTweet = () => {
                 <hr />
                 <div>
                     <CreateComment tweetId={tweetId} />
+                    <hr/>
                     {tweetComments.map(comment => {
                         return (
                             <div className='comment'>

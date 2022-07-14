@@ -12,8 +12,8 @@ const NavBar = () => {
     if (sessionUser) {
         sessionLinks = (
             <>
-                <NavLink to="/tweets" exact={true} activeClassName="active">
-                    Tweets
+                <NavLink className='linkQuestions' to="/tweets" exact={true} activeClassName="active">
+                    All Tweets
                 </NavLink>
                 <LogoutButton />
             </>
@@ -33,7 +33,7 @@ const NavBar = () => {
         <div className="navBar">
             <div className="navLinks">
                 <NavLink className="logoLink" exact to="/">
-                    <div className="logo">Twitterium</div>
+                    <div className="logo">TwittR</div>
                 </NavLink>
                 {sessionLinks}
             </div>

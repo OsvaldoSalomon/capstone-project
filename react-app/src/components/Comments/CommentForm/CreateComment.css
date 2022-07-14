@@ -1,0 +1,84 @@
+.commentFormContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    /*width: 60em;*/
+
+}
+
+.commentInput {
+    display: block;
+    color: black;
+    font-size: 1.2em;
+    background-color: transparent;
+    padding: 0 0.6em;
+    margin-top: 0.3em;
+    border: none;
+    height: 3em;
+    width: 30em;
+    margin-right: 1%;
+    margin-bottom: 1em;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.commentInput:focus {
+    background-color: transparent;
+    font-size: 1.2em;
+    outline: none;
+    padding: 0 0.6em;
+    margin-top: 0.3em;
+    border: none;
+    height: 3em;
+    width: 30em;
+    margin-right: 1%;
+    margin-bottom: 1em;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.commentInput::placeholder {
+    color: #3e3e3e;
+    font-size: 1em;
+}
+
+.commentForm {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.commentInputContainer {
+    display: flex;
+    align-items: flex-end;
+    align-content: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.commentButton {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 1em;
+    background-color: #235fea;
+    color: white;
+    margin-bottom: 2em;
+    border: none;
+    border-radius: 1em;
+    height: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.commentButton:hover {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 1em;
+    background-color: #0049e3;
+    color: white;
+    margin-bottom: 2em;
+    border: none;
+    border-radius: 1em;
+    height: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
