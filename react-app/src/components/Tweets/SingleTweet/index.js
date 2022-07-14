@@ -64,7 +64,6 @@ const SingleTweet = () => {
                                         <DeleteComment commentId={comment.id} />
                                     </div>
                                 ) : <span></span>}
-
                             </div>
                         )
                     })}

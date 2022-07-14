@@ -8,11 +8,11 @@
     align-items: center;
     justify-content: center;
     border-radius: 1.5em;
-    backdrop-filter: blur(1.8em) saturate(110%);
-    -webkit-backdrop-filter: blur(0.59em) saturate(182%);
+    backdrop-filter: blur(.59em) saturate(182%);
+    -webkit-backdrop-filter: blur(.59em) saturate(182%);
     background-color: rgba(194, 220, 255, 0.44);
     border-radius: 1.5em;
-    border: 0.1em solid rgba(255, 255, 255, 0.18);
+    border: .1em solid rgba( 255, 255, 255, 0.18 );
     box-sizing: border-box;
 }
 
