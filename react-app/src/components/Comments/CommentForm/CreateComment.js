@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addComment } from "../../../store/comments";
 import './CreateComment.css';
@@ -8,14 +8,24 @@ const CreateComment = ({ tweetId }) => {
     const sessionUser = useSelector((state) => state.session.user);
     const [errors, setErrors] = useState([]);
     const [content, setContent] = useState('');
+    const [hasSubmitted, setHasSubmitted] = useState(false);
 
     const updateContent = (e) => setContent(e.target.value);
 
     const reset = () => setContent('');
 
+    useEffect(() => {
+        const errors = [];
+        if (content.length == 0) errors.push('Please provide a content.')
+        if (content.trim().length == 0) errors.push("You can't provide whitespaces.");
+        if (content.length <= 3) errors.push('Comment must be greater than 3 characters.');
+        if (content.length >= 100) errors.push('Comment must be less than 100 characters.');
+        setErrors(errors);
+    }, [content]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setErrors([]);
+        setHasSubmitted(true);
 
         const payload = {
             userId: sessionUser.id,
@@ -23,23 +33,23 @@ const CreateComment = ({ tweetId }) => {
             content
         };
 
-        console.log(payload);
-
-        dispatch(addComment(payload))
-        reset();
+        if(errors.length <= 0) {
+            dispatch(addComment(payload))
+            reset();
+        }
     };
 
     return (
         <section className="commentFormContainer">
             <img className="tweetFormAuthorLogo" src={sessionUser.profilePic} alt={sessionUser.username} />
             <form className="commentForm" onSubmit={handleSubmit}>
-                <ul className="errorsList">
-                    {errors.map((error, idx) => (
-                        <li className="errors" key={idx}>
+                <div className="errorsList">
+                    {hasSubmitted && errors.map((error, idx) => (
+                        <p className="errors" key={idx}>
                             {error}
-                        </li>
+                        </p>
                     ))}
-                </ul>
+                </div>
                 <div className="commentInputContainer">
                     <input
                         className="commentInput"

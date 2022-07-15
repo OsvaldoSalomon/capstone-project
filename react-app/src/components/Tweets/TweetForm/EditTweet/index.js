@@ -4,12 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateTweet } from "../../../../store/tweets";
 import './EditTweet.css'
 
-const EditTweet = ({ tweet }) => {
+const EditTweet = ({ tweet, hideForm }) => {
     const dispatch = useDispatch();
     const { tweetId } = useParams();
     const sessionUser = useSelector((state) => state.session.user);
     const [contentInput, setContent] = useState(tweet?.content);
-    // const [image, setImage] = useState('');
     const [errors, setErrors] = useState([]);
 
     const updateContent = (e) => setContent(e.target.value);
@@ -24,11 +23,8 @@ const EditTweet = ({ tweet }) => {
             content: contentInput,
         };
 
-        console.log(payload);
-
-        await dispatch(updateTweet(payload)).then(
-            () => console.log(payload),
-        )
+        await dispatch(updateTweet(payload))
+        hideForm();
     };
 
     return (
