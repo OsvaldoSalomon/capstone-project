@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
+import Demo from "../Demo";
 import { login } from "../../../store/session";
 import "./Login.css";
 
@@ -80,6 +81,7 @@ const LoginForm = () => {
                     />
                 </div>
                 <button className="loginButton" type="submit">Login</button>
+                <Demo />
                 <p>
                     Don't have an account?{' '}
                     <a className="linkSignup" href="/sign-up">

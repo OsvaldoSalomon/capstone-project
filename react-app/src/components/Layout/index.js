@@ -1,6 +1,5 @@
 import TweetList from "../Tweets/TweetList";
 import ProfileCard from "../Profile/ProfileCard";
-import Hashtags from "../Hashtags";
 import TweetForm from "../Tweets/TweetForm/CreateTweet";
 import ProfileSuggestion from "../Profile/ProfileSuggestion";
 import { useSelector } from "react-redux";
@@ -12,7 +11,6 @@ const Layout = () => {
     return (
         <div className='layoutBody'>
             <ProfileCard user={user} className='profileLayout' />
-            {/*<div className='spacingDiv'></div>*/}
             <div className='layoutCenter'>
                 <TweetForm />
                 <TweetList />

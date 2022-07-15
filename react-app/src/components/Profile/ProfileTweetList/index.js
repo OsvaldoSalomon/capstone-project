@@ -1,11 +1,10 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getTweets } from '../../../store/tweets';
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import TweetCard from '../TweetCard';
-import './TweetList.css';
+import { useEffect } from "react";
+import { getTweets } from "../../../store/tweets";
+import TweetCard from "../../Tweets/TweetCard";
 
-const TweetList = () => {
+const ProfileTweetList = ({ user }) => {
     const dispatch = useDispatch()
     const allTweets = useSelector(state => Object.values(state.tweets))
     const history = useHistory();
@@ -18,12 +17,14 @@ const TweetList = () => {
         dispatch(getTweets());
     }, [dispatch])
 
-    if (!allTweets) {
-        return <h1 className='noTweetsMessage' >No tweets were found.</h1>
+    const filteredTweets = allTweets.filter(tweet => tweet.user.id == user.id)
+
+    if (filteredTweets.length <= 0) {
+        return <h1 className='noTweetsMessage'>No tweets were found for this user.</h1>
     } else {
         return (
             <div className='tweetList'>
-                {allTweets.map((tweet) => {
+                {filteredTweets.map((tweet) => {
                     return (
                         <div onClick={() => onClicked(tweet.id)}>
                             <TweetCard key={tweet.id} tweet={tweet} />
@@ -33,7 +34,6 @@ const TweetList = () => {
             </div>
         )
     }
-
 }
 
-export default TweetList;
+export default ProfileTweetList;
