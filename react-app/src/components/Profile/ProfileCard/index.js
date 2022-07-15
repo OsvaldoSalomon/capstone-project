@@ -8,7 +8,7 @@ const ProfileCard = ({ user }) => {
                 <img className="profileImageLogo" src={user.profilePic} alt={user.username} />
                 <h3>{user?.firstName} {user?.lastName}</h3>
                 <h4>@{user?.username}</h4>
-                <p className='profileBio'>{user?.bio}</p>
+                <p className='profileBio'>"{user?.bio}"</p>
             </div>
         </div>
     )

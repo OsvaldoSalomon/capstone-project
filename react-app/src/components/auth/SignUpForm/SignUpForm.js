@@ -9,7 +9,6 @@ const SignUpForm = () => {
     const [email, setEmail] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [birthday, setBirthday] = useState(new Date());
     const [bio, setBio] = useState("");
     const [profilePic, setProfilePic] = useState("");
     const [password, setPassword] = useState("");
@@ -24,14 +23,14 @@ const SignUpForm = () => {
     useEffect(() => {
         const errors = [];
         if (username.length === 0) errors.push("Must provide a value for the username.");
-        if (username.length <= 5) errors.push("Username must be longer than 5 characters.");
-        if (username.length >= 15) errors.push("Username must not be longer than 15 characters.");
+        if (username.length < 4) errors.push("Username must be longer than 4 characters.");
+        if (username.length >= 14) errors.push("Username must not be longer than 14 characters.");
         if (firstName.length === 0) errors.push("Must provide a value for the first name.");
         if (firstName.length <= 3) errors.push("First name must be longer than 3 characters.");
         if (lastName.length === 0) errors.push("Must provide a value for the last name.");
-        if (lastName.length <= 3) errors.push("Last name must be longer than 3 characters.");
+        if (lastName.length <= 2) errors.push("Last name must be longer than 3 characters.");
         if (bio.length <= 15) errors.push("Bio must be longer than 15 characters.");
-        if (bio.length >= 30) errors.push("Bio can't be longer than 30 characters.");
+        if (bio.length >= 80) errors.push("Bio can't be longer than 80 characters.");
         if (email.length === 0) errors.push("Must provide a value for the email.");
         if (!emailRegex.test((email))) errors.push("Must provide a valid email.");
         if (password.length === 0) errors.push("Must provide a value for the password.");
@@ -53,7 +52,6 @@ const SignUpForm = () => {
             firstName,
             lastName,
             bio,
-            birthday,
             profilePic,
             email,
             password,
@@ -151,17 +149,6 @@ const SignUpForm = () => {
                                 value={lastName}
                             />
                         </div>
-                        {/*<div>*/}
-                        {/*    <input*/}
-                        {/*        required={true}*/}
-                        {/*        className={`inputBox ${errorsClass}`}*/}
-                        {/*        placeholder="* Birthday"*/}
-                        {/*        type="date"*/}
-                        {/*        name="birthday"*/}
-                        {/*        onChange={updateBirthday}*/}
-                        {/*        value={birthday}*/}
-                        {/*    />*/}
-                        {/*</div>*/}
                         <div>
                             <input
                                 required={true}

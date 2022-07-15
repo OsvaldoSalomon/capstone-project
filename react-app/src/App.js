@@ -7,9 +7,8 @@ import NavBar from "./components/Navigation/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import HomePage from "./components/HomePage";
 import Layout from "./components/Layout";
-// import SingleTweet from "./components/Tweets/SingleTweet";
+import ProfileLayout from "./components/Profile/ProfileLayout";
 import SingleTweetLayout from "./components/Tweets/SingleTweetLayout";
-import User from "./components/User";
 import { authenticate } from "./store/session";
 
 function App() {
@@ -31,6 +30,9 @@ function App() {
         <BrowserRouter>
             <NavBar />
             <Switch>
+                <ProtectedRoute path="/" exact={true}>
+                    <HomePage />
+                </ProtectedRoute>
                 <Route path="/login" exact={true}>
                     <LoginForm />
                 </Route>
@@ -44,10 +46,7 @@ function App() {
                     <SingleTweetLayout />
                 </ProtectedRoute>
                 <ProtectedRoute path="/users/:userId" exact={true}>
-                    <User />
-                </ProtectedRoute>
-                <ProtectedRoute path="/" exact={true}>
-                    <HomePage />
+                    <ProfileLayout />
                 </ProtectedRoute>
             </Switch>
         </BrowserRouter>
