@@ -7,7 +7,7 @@ const Demo = () => {
 
     const loginDemo = (e) => {
         e.preventDefault();
-        const email = "tester@test.com";
+        const email = "demo@lition.com";
         const password = "password";
 
         return dispatch(login(email, password));

@@ -10,27 +10,23 @@
 }
 
 .authLink {
-    background-color: white;
-	color: dodgerblue;
-	padding: 0.3em;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #235fea;
+    color: white;
+    text-align: center;
     text-decoration: none;
-	border: 1px solid dodgerblue;
-	border-radius: 1em;
-    margin-top: .5em;
-    margin-right: 4em;
-	font-family: 'Montserrat', sans-serif;
+    padding: .4em;
+    border-radius: 1em;
 }
 
 .authLink:hover {
-    background-color: dodgerblue;
-	color: white;
-	padding: 0.3em;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #0049e3;
+    color: white;
+    text-align: center;
     text-decoration: none;
-	border: 1px solid dodgerblue;
-	border-radius: 1em;
-    margin-top: .5em;
-    margin-right: 4em;
-	font-family: 'Montserrat', sans-serif;
+    padding: .4em;
+    border-radius: 1em;
 }
 
 .navLinks {
@@ -73,6 +69,8 @@
     border-radius: 1em;
 }
 
-.allTweetsLink {
-
+.loginSignLink {
+    display: flex;
+    gap: 1em;
+    margin-right: 2em;
 }

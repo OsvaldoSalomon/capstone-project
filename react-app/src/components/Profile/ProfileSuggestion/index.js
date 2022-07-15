@@ -15,7 +15,7 @@ const ProfileSuggestion = () => {
         fetchData();
     }, []);
 
-    users.splice(4, 1);
+    users.splice(-1, 1);
     // console.log('users', users)
     // console.log('filteredUsers', filteredUsers)
 
