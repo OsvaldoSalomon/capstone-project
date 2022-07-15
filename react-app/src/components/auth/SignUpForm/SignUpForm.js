@@ -26,7 +26,7 @@ const SignUpForm = () => {
         if (username.length < 4) errors.push("Username must be longer than 4 characters.");
         if (username.length >= 14) errors.push("Username must not be longer than 14 characters.");
         if (firstName.length === 0) errors.push("Must provide a value for the first name.");
-        if (firstName.length <= 3) errors.push("First name must be longer than 3 characters.");
+        if (firstName.length < 3) errors.push("First name must be longer than 2 characters.");
         if (lastName.length === 0) errors.push("Must provide a value for the last name.");
         if (lastName.length <= 2) errors.push("Last name must be longer than 3 characters.");
         if (bio.length <= 15) errors.push("Bio must be longer than 15 characters.");

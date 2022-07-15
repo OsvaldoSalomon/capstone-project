@@ -25,5 +25,6 @@ class SignUpForm(FlaskForm):
     firstName = StringField('First Name', validators=[DataRequired()])
     lastName = StringField('Last Name', validators=[DataRequired()])
     bio = StringField("Bio", validators=[DataRequired()])
+    profilePic = StringField('Profile Picture')
     email = StringField('email', validators=[DataRequired(), user_exists])
     password = StringField('password', validators=[DataRequired()])
