@@ -4,6 +4,7 @@
     width: 61em;
     padding: 1.5em;
     flex-direction: column;
+    word-break: break-all;
     justify-content: center;
     align-items: center;
     backdrop-filter: blur(0.59em) saturate(182%);

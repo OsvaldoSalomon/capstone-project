@@ -5,6 +5,7 @@
 	margin-bottom: 1.5em;
 	margin-right: 1.5em;
 	margin-left: 1.5em;
+	word-break: break-all;
 	font-size: 1.2em;
 	backdrop-filter: blur(.59em) saturate(182%);
 	-webkit-backdrop-filter: blur(.59em) saturate(182%);

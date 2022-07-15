@@ -106,6 +106,7 @@
     background-color: #235fea;
     color: white;
     margin-bottom: 2em;
+    width: 6em;
     border: none;
     border-radius: 1em;
     height: 2em;
@@ -119,6 +120,7 @@
     font-size: 1em;
     background-color: #0049e3;
     color: white;
+    width: 6em;
     margin-bottom: 2em;
     border: none;
     border-radius: 1em;
