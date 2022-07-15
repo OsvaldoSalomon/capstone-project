@@ -33,10 +33,12 @@ const CreateComment = ({ tweetId }) => {
             content
         };
 
-        if(errors.length <= 0) {
+        if (errors.length <= 0) {
             dispatch(addComment(payload))
+            setHasSubmitted(false);
             reset();
         }
+        // setErrors([]);
     };
 
     return (

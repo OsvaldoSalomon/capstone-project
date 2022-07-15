@@ -1,21 +1,31 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateComment } from "../../../store/comments";
 import { useParams } from "react-router-dom";
 
-const EditComment = ({ commentId }) => {
+const EditComment = ({ commentId, hideForm }) => {
     const dispatch = useDispatch();
     const { tweetId } = useParams();
     const comment = useSelector(state => state.comments[commentId]);
     const sessionUser = useSelector((state) => state.session.user);
     const [errors, setErrors] = useState([]);
     const [content, setContent] = useState(comment?.content);
+    const [hasSubmitted, setHasSubmitted] = useState(false);
 
     const updateContent = (e) => setContent(e.target.value);
 
+    useEffect(() => {
+        const errors = [];
+        if (content.length == 0) errors.push('Please provide a content.')
+        if (content.trim().length == 0) errors.push("You can't provide whitespaces.");
+        if (content.length <= 3) errors.push('Comment must be greater than 3 characters.');
+        if (content.length >= 100) errors.push('Comment must be less than 100 characters.');
+        setErrors(errors);
+    }, [content]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setErrors([]);
+        setHasSubmitted(true);
 
         const payload = {
             userId: sessionUser.id,
@@ -24,31 +34,34 @@ const EditComment = ({ commentId }) => {
             commentId
         };
 
-        console.log(payload);
+        if (errors.length <= 0) {
+            dispatch(updateComment(payload))
+            setHasSubmitted(false);
+            hideForm();
+        }
 
-        dispatch(updateComment(payload))
     };
 
     return (
         <section className="commentFormContainer">
             <form className="commentForm" onSubmit={handleSubmit}>
-                <ul className="errorsList">
-                    {errors.map((error, idx) => (
-                        <li className="errors" key={idx}>
+                <div className="errorsList">
+                    {hasSubmitted && errors.map((error, idx) => (
+                        <p className="errors" key={idx}>
                             {error}
-                        </li>
+                        </p>
                     ))}
-                </ul>
-                <div className="formContainer">
+                </div>
+                <div className="commentEditInputContainer">
                     <input
-                        className="commentInput"
+                        className="commentEditInput"
                         type="text"
-                        placeholder="Add a comment"
+                        placeholder="Edit your reply"
                         value={content}
                         onChange={updateContent}
                     />
                     <button className="commentButton" type="submit">
-                        Edit
+                        Update
                     </button>
                 </div>
             </form>

@@ -55,6 +55,50 @@
     flex-direction: row;
 }
 
+.commentEditInputContainer {
+    display: flex;
+    align-items: flex-end;
+    align-content: center;
+    justify-content: center;
+    flex-direction: row;
+    font-size: .8em;
+}
+
+.commentEditInput {
+    color: black;
+    font-size: 1.2em;
+    background-color: rgba(194, 220, 255, 0.44);
+    border-radius: .5em;
+    padding: 0 0.6em;
+    margin-top: 0.3em;
+    border: none;
+    outline: none;
+    height: 2em;
+    width: 30em;
+    margin-right: 1%;
+    margin-bottom: 1em;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.commentEditInput:focus {
+    background-color: rgba(194, 220, 255, 0.44);
+    font-size: 1.2em;
+    outline: none;
+    padding: 0 0.6em;
+    margin-top: 0.3em;
+    border: none;
+    height: 2em;
+    width: 30em;
+    margin-right: 1%;
+    margin-bottom: 1em;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.commentEditInput::placeholder {
+    color: #3e3e3e;
+    font-size: 1em;
+}
+
 .commentButton {
     font-family: "Montserrat", sans-serif;
     font-weight: 500;

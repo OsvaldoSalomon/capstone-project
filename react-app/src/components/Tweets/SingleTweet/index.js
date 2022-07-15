@@ -4,12 +4,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { getComments } from "../../../store/comments";
 import { getTweets } from "../../../store/tweets";
 import { FiEdit } from 'react-icons/fi';
-import DeleteComment from "../../Comments/DeleteComment";
 import DeleteTweet from "../DeleteTweet";
 import EditTweet from "../TweetForm/EditTweet";
 import CreateComment from "../../Comments/CommentForm/CreateComment";
-import EditComment from "../../Comments/CommentForm/EditComment";
+import Comment from "../../Comments/Comment";
 import './SingleTweet.css';
+
 
 const SingleTweet = () => {
     const dispatch = useDispatch();
@@ -69,28 +69,7 @@ const SingleTweet = () => {
                     <hr />
                     {tweetComments.map(comment => {
                         return (
-                            <div className='comment'>
-                                <img className="commentProfileImage" src={comment.user.profilePic} />
-                                <div className='commentMain'>
-                                    <div className='commentHeader'>
-                                        <div className='commentAuthorName'>
-                                            {comment?.user.firstName} {comment.user.lastName}
-                                        </div>
-                                        <div className="commentAuthorSlug">
-                                            @{comment?.user.username}
-                                        </div>
-                                    </div>
-                                    <div className='commentContent'>
-                                        {comment?.content}
-                                        {sessionUser.id === comment?.user.id ? (
-                                            <div>
-                                                <EditComment commentId={comment?.id} />
-                                                <DeleteComment commentId={comment?.id} />
-                                            </div>
-                                        ) : <span></span>}
-                                    </div>
-                                </div>
-                            </div>
+                            <Comment comment={comment} />
                         )
                     })}
                 </div>
