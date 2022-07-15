@@ -29,9 +29,10 @@ const TweetForm = () => {
 
     useEffect(() => {
         const errors = [];
-        if (content.length == 0) errors.push('Please provide a content')
-        if (content.length <= 4) errors.push('Tweet content must be greater than 3');
-        if (content.length >= 250) errors.push('Tweet content must be greater than 3');
+        if (content.length == 0) errors.push('Please provide a content.')
+        if (content.trim().length == 0) errors.push("You can't provide whitespaces.");
+        if (content.length <= 3) errors.push('Tweet content must be greater than 3 characters.');
+        if (content.length >= 250) errors.push('Tweet content must be less than 250 characters.');
         setErrors(errors);
     }, [content]);
 

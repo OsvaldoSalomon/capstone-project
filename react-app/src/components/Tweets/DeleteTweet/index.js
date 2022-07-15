@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { CgTrash } from 'react-icons/cg';
 import { eraseTweet, getTweets } from "../../../store/tweets";
 
 const DeleteTweet = ({ tweetId }) => {
@@ -12,7 +13,7 @@ const DeleteTweet = ({ tweetId }) => {
         history.push('/tweets');
     }
 
-    return <button onClick={onClicked}>Delete Tweet</button>
+    return <CgTrash className='iconDelete' onClick={onClicked} />
 }
 
 export default DeleteTweet;
