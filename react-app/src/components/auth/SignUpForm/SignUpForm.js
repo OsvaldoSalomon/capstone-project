@@ -25,6 +25,7 @@ const SignUpForm = () => {
         const errors = [];
         if (username.length === 0) errors.push("Must provide a value for the username.");
         if (username.length <= 5) errors.push("Username must be longer than 5 characters.");
+        if (username.length >= 15) errors.push("Username must not be longer than 15 characters.");
         if (firstName.length === 0) errors.push("Must provide a value for the first name.");
         if (firstName.length <= 3) errors.push("First name must be longer than 3 characters.");
         if (lastName.length === 0) errors.push("Must provide a value for the last name.");

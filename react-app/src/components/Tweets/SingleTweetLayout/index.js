@@ -1,5 +1,5 @@
 import ProfileCard from "../../Profile/ProfileCard";
-import Hashtags from "../../Hashtags";
+import ProfileSuggestion from "../../Profile/ProfileSuggestion";
 import SingleTweet from "../SingleTweet";
 import { useParams } from "react-router-dom";
 import './SingleTweetLayout.css';
@@ -17,7 +17,7 @@ const SingleTweetLayout = () => {
             <div className='layoutCenter'>
                 <SingleTweet />
             </div>
-            <Hashtags className='usersLayout' />
+            <ProfileSuggestion className='usersLayout' />
         </div>
     )
 }
