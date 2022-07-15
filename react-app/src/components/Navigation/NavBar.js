@@ -9,7 +9,7 @@ const NavBar = () => {
 
     let sessionLinks;
 
-    if (sessionUser) {
+    if (sessionUser != null) {
         sessionLinks = (
             <>
                 <NavLink className='linkQuestions' to="/tweets" exact={true} activeClassName="active">
@@ -19,14 +19,16 @@ const NavBar = () => {
             </>
         );
     } else {
-        <>
-            <NavLink to="/login" exact={true} activeClassName="active">
-                Login
-            </NavLink>
-            <NavLink to="/sign-up" exact={true} activeClassName="active">
-                Sign Up
-            </NavLink>
-        </>;
+        sessionLinks = (
+            <div className='loginSignLink'>
+                <NavLink className="authLink" to="/login">
+                    Log In
+                </NavLink>
+                <NavLink className="authLink" to="/signup">
+                    Sign Up
+                </NavLink>
+            </div>
+        );
     }
 
     return (
