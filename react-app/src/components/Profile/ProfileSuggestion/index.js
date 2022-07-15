@@ -15,22 +15,35 @@ const ProfileSuggestion = () => {
         fetchData();
     }, []);
 
-    users.splice(0, 4);
-    // console.log('users', users)
-    // console.log('filteredUsers', filteredUsers)
-
-    const userComponents = users.map((user) => {
-        return (
-            <li className='profilesListElement' key={user.id}>
-                <img className="profileSuggestionImage" src={user.profilePic} alt={user.username} />
-                <NavLink className='profileSuggestionUsername' to={`/users/${user.id}`}>@{user.username}</NavLink>
+    const userComponents = (
+        <>
+            <li className='profilesListElement' key={users[1]?.id}>
+                <img className="profileSuggestionImage" src={users[1]?.profilePic} alt={users[1]?.username} />
+                <NavLink className='profileSuggestionUsername'
+                         to={`/users/${users[1]?.id}`}>@{users[1]?.username}</NavLink>
             </li>
-        );
-    });
+            <li className='profilesListElement' key={users[2]?.id}>
+                <img className="profileSuggestionImage" src={users[2]?.profilePic} alt={users[2]?.username} />
+                <NavLink className='profileSuggestionUsername'
+                         to={`/users/${users[2]?.id}`}>@{users[2]?.username}</NavLink>
+            </li>
+            <li className='profilesListElement' key={users[3]?.id}>
+                <img className="profileSuggestionImage" src={users[3]?.profilePic} alt={users[3]?.username} />
+                <NavLink className='profileSuggestionUsername'
+                         to={`/users/${users[3]?.id}`}>@{users[3]?.username}</NavLink>
+            </li>
+            <li className='profilesListElement' key={users[0]?.id}>
+                <img className="profileSuggestionImage" src={users[0]?.profilePic} alt={users[0]?.username} />
+                <NavLink className='profileSuggestionUsername'
+                         to={`/users/${users[0]?.id}`}>@{users[0]?.username}</NavLink>
+            </li>
+        </>
+    );
+
 
     return (
         <div className='profileSuggestionBody'>
-            <h1>More Profiles: </h1>
+            <h2>Most visited profiles: </h2>
             <ul>{userComponents}</ul>
         </div>
     );
