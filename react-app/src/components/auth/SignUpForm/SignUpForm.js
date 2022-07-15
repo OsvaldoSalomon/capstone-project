@@ -41,11 +41,14 @@ const SignUpForm = () => {
         if (hasSubmitted) {
             setErrorsClass('errorInput')
         }
-    }, [username, firstName, lastName, bio, email, password, repeatPassword, hasSubmitted]);
+    }, [username, firstName, lastName, bio, email, password, profilePic, repeatPassword, hasSubmitted]);
 
     const onSignUp = async (e) => {
         e.preventDefault();
         setHasSubmitted(true);
+        if (profilePic.length <= 0) {
+            setProfilePic('https://images.unsplash.com/photo-1641423914598-288fee6cecf2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80')
+        }
 
         const userData = {
             username,
@@ -57,7 +60,7 @@ const SignUpForm = () => {
             password,
         };
 
-        // console.log("ON SIGN UP", userData);
+        console.log("ON SIGN UP", userData);
 
         if (errors.length <= 0) {
             const data = await dispatch(signUp(userData));
