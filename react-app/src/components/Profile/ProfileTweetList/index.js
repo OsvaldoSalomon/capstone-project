@@ -19,12 +19,16 @@ const ProfileTweetList = ({ user }) => {
 
     const filteredTweets = allTweets.filter(tweet => tweet.user.id == user.id)
 
+    const sortedTweets = filteredTweets.sort((a, b) => {
+        return new Date(a.createdAt - b.createdAt);
+    }).reverse();
+
     if (filteredTweets.length <= 0) {
         return <h1 className='noTweetsMessage'>No tweets were found for this user.</h1>
     } else {
         return (
             <div className='tweetList'>
-                {filteredTweets.map((tweet) => {
+                {sortedTweets.map((tweet) => {
                     return (
                         <div onClick={() => onClicked(tweet.id)}>
                             <TweetCard key={tweet.id} tweet={tweet} />

@@ -1,6 +1,7 @@
 import ProfileCard from "../../Profile/ProfileCard";
 import ProfileSuggestion from "../../Profile/ProfileSuggestion";
 import SingleTweet from "../SingleTweet";
+import Profile from "../../Profile";
 import { useParams } from "react-router-dom";
 import './SingleTweetLayout.css';
 import { useSelector } from "react-redux";
@@ -13,7 +14,10 @@ const SingleTweetLayout = () => {
 
     return (
         <div className='layoutBody'>
-            <ProfileCard user={user} className='profileLayout' />
+            <div>
+                <ProfileCard user={user} className='profileLayout' />
+                <Profile />
+            </div>
             <div className='layoutCenter'>
                 <SingleTweet />
             </div>

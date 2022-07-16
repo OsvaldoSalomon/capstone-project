@@ -1,12 +1,11 @@
-// import { useSelector } from "react-redux";
 import ProfileCard from "../ProfileCard";
 import ProfileTweetList from "../ProfileTweetList";
 import ProfileSuggestion from "../ProfileSuggestion";
+import Profile from "../index";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const ProfileLayout = () => {
-    // const user = useSelector(state => (state.session.user))
     const [user, setUser] = useState({});
     const { userId } = useParams();
 
@@ -27,7 +26,10 @@ const ProfileLayout = () => {
 
     return (
         <div className='layoutBody'>
-            <ProfileCard user={user} className='profileLayout' />
+            <div>
+                <ProfileCard user={user} className='profileLayout' />
+                <Profile />
+            </div>
             <div className='layoutCenter'>
                 <ProfileTweetList user={user} />
             </div>
