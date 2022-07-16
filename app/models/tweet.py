@@ -8,8 +8,8 @@ class Tweet(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     content = db.Column(db.Text, nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    createdAt = db.Column(db.Date, default=datetime.datetime.now(), nullable=False)
-    updatedAt = db.Column(db.Date, default=datetime.datetime.now(), nullable=False)
+    createdAt = db.Column(db.DateTime, default=datetime.datetime.now(), nullable=False)
+    updatedAt = db.Column(db.DateTime, default=datetime.datetime.now(), nullable=False)
 
     users = db.relationship('User', back_populates='tweets')
     comments = db.relationship("Comment", back_populates="tweets", cascade="all, delete")

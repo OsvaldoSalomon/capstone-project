@@ -1,4 +1,3 @@
-from re import T
 from flask import Blueprint, request
 from app.models import Tweet, db
 from flask_login import login_required, current_user
