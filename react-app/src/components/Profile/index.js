@@ -1,38 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import './Profile.css';
 
 const Profile = () => {
-    const [user, setUser] = useState({});
-    const { userId } = useParams();
+    const history = useHistory();
+    const user = useSelector(state => (state.session.user))
 
-    useEffect(() => {
-        if (!userId) {
-            return;
-        }
-        (async () => {
-            const response = await fetch(`/api/users/${userId}`);
-            const user = await response.json();
-            setUser(user);
-        })();
-    }, [userId]);
-
-    if (!user) {
-        return null;
+    const onClicked = () => {
+        history.push(`/users/${user.id}`)
     }
 
-    return (
-        <ul>
-            <li>
-                <strong>User Id</strong> {userId}
-            </li>
-            <li>
-                <strong>Username</strong> {user.username}
-            </li>
-            <li>
-                <strong>Email</strong> {user.email}
-            </li>
-        </ul>
-    );
+    return <button className='viewProfileButton' onClick={onClicked}>View my profile</button>
 }
 
 export default Profile;

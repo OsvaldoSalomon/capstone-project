@@ -18,12 +18,16 @@ const TweetList = () => {
         dispatch(getTweets());
     }, [dispatch])
 
+    const sortedTweets = allTweets.sort((a, b) => {
+        return new Date(a.createdAt - b.createdAt);
+    }).reverse();
+
     if (!allTweets) {
-        return <h1 className='noTweetsMessage' >No tweets were found.</h1>
+        return <h1 className='noTweetsMessage'>No tweets were found.</h1>
     } else {
         return (
             <div className='tweetList'>
-                {allTweets.map((tweet) => {
+                {sortedTweets.map((tweet) => {
                     return (
                         <div onClick={() => onClicked(tweet.id)}>
                             <TweetCard key={tweet.id} tweet={tweet} />

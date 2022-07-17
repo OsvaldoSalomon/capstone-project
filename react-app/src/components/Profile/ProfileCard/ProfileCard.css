@@ -45,3 +45,21 @@
 .profileBio {
     text-align: center;
 }
+
+.linkToUserProfile {
+    background-color: rgba(5, 75, 233, 0.65);
+    padding-right: .5em;
+    padding-left: .5em;
+    border-radius: 1em;
+    text-decoration: none;
+    color: white;
+}
+
+.linkToUserProfile:hover {
+    background-color: rgba(3, 55, 172, 0.77);
+    padding-right: .5em;
+    padding-left: .5em;
+    border-radius: 1em;
+    text-decoration: none;
+    color: white;
+}

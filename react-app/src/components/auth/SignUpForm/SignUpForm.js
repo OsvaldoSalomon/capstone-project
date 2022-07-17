@@ -14,7 +14,6 @@ const SignUpForm = () => {
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
     const [errors, setErrors] = useState([]);
-    const [errorsClass, setErrorsClass] = useState("");
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
     const user = useSelector((state) => state.session.user);
@@ -38,9 +37,6 @@ const SignUpForm = () => {
         if (repeatPassword.length === 0) errors.push("Please repeat the password.");
         if (repeatPassword !== password) errors.push("Passwords do not match.");
         setErrors(errors);
-        if (hasSubmitted) {
-            setErrorsClass('errorInput')
-        }
     }, [username, firstName, lastName, bio, email, password, profilePic, repeatPassword, hasSubmitted]);
 
     const onSignUp = async (e) => {
@@ -122,7 +118,7 @@ const SignUpForm = () => {
                         <div>
                             <input
                                 required={true}
-                                className={`inputBox ${errorsClass}`}
+                                className='inputBox'
                                 type="text"
                                 name="username"
                                 placeholder="* Username"
@@ -133,7 +129,7 @@ const SignUpForm = () => {
                         <div>
                             <input
                                 required={true}
-                                className={`inputBox ${errorsClass}`}
+                                className='inputBox'
                                 placeholder="* First Name"
                                 type="text"
                                 name="firstName"
@@ -144,7 +140,7 @@ const SignUpForm = () => {
                         <div>
                             <input
                                 required={true}
-                                className={`inputBox ${errorsClass}`}
+                                className='inputBox'
                                 placeholder="* Last Name"
                                 type="text"
                                 name="lastName"
@@ -155,7 +151,7 @@ const SignUpForm = () => {
                         <div>
                             <input
                                 required={true}
-                                className={`inputBox ${errorsClass}`}
+                                className='inputBox'
                                 placeholder="* Bio"
                                 type="text"
                                 name="bio"
@@ -168,7 +164,7 @@ const SignUpForm = () => {
                         <div>
                             <input
                                 required={true}
-                                className={`inputBox ${errorsClass}`}
+                                className='inputBox'
                                 placeholder="* Email"
                                 type="text"
                                 name="email"
@@ -179,7 +175,7 @@ const SignUpForm = () => {
                         <div>
                             <input
                                 required={true}
-                                className={`inputBox ${errorsClass}`}
+                                className='inputBox'
                                 placeholder="* Password"
                                 type="password"
                                 name="password"
@@ -189,7 +185,7 @@ const SignUpForm = () => {
                         </div>
                         <div>
                             <input
-                                className={`inputBox ${errorsClass}`}
+                                className='inputBox'
                                 placeholder="* Repeat Password"
                                 type="password"
                                 name="repeat_password"
@@ -200,7 +196,7 @@ const SignUpForm = () => {
                         </div>
                         <div>
                             <input
-                                className={`inputBox ${errorsClass}`}
+                                className='inputBox'
                                 placeholder="Profile Picture (Optional)"
                                 type="text"
                                 name="profilePic"

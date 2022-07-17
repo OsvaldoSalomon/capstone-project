@@ -1,0 +1,12 @@
+.notFoundBody {
+    display: flex;
+    margin-top: 4em;
+    flex-direction: column;
+    align-items: center;
+}
+
+.notFoundInfo {
+    font-size: 3em;
+    text-align: center;
+    color: white;
+}

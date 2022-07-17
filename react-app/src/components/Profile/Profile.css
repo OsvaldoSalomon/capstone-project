@@ -1,0 +1,33 @@
+.viewProfileButton{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 1em;
+    background-color: #235fea;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 1em;
+    height: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+    top: 45%;
+    position: fixed;
+    left: 13.5%;
+}
+
+.viewProfileButton:hover {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 1em;
+    background-color: #054be9;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 1em;
+    height: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+    top: 45%;
+    position: fixed;
+    left: 13.5%;
+}
