@@ -61,7 +61,7 @@ const EditComment = ({ commentId, hideForm }) => {
                         onChange={updateContent}
                     />
                     <button className="commentButton" type="submit">
-                        Update
+                        Save
                     </button>
                 </div>
             </form>
