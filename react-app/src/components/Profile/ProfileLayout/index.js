@@ -1,12 +1,23 @@
 import ProfileCard from "../ProfileCard";
 import ProfileTweetList from "../ProfileTweetList";
 import ProfileSuggestion from "../ProfileSuggestion";
-import Profile from "../index";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 const ProfileLayout = () => {
-    const [user, setUser] = useState({});
+    const history = useHistory();
+    const notFoundUser = {
+        id: 404,
+        firstName: 'Not Found',
+        lastName: '',
+        username: 'Not Found',
+        email: 'Not Found',
+        bio: 'Not Found',
+        tweets: null,
+        profilePic: 'https://images.unsplash.com/photo-1644366251160-8791a554e064?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80'
+    }
+
+    const [user, setUser] = useState(notFoundUser);
     const { userId } = useParams();
 
     useEffect(() => {
@@ -20,16 +31,8 @@ const ProfileLayout = () => {
         })();
     }, [userId]);
 
-    if (!user) {
-        return null;
-    }
-
     return (
         <div className='layoutBody'>
-            {/*<div>*/}
-            {/*    <ProfileCard user={user} className='profileLayout' />*/}
-            {/*    <Profile />*/}
-            {/*</div>*/}
             <ProfileCard user={user} className='profileLayout' />
             <div className='layoutCenter'>
                 <ProfileTweetList user={user} />

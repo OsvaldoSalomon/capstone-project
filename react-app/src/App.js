@@ -6,8 +6,10 @@ import SignUpForm from "./components/auth/SignUpForm/SignUpForm";
 import NavBar from "./components/Navigation/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import HomePage from "./components/HomePage";
+import UserNotFound from "./components/UserNotFound/UserNotFound";
 import Layout from "./components/Layout";
 import ProfileLayout from "./components/Profile/ProfileLayout";
+import PageNotFound from "./components/PageNotFound/PageNotFound";
 import SingleTweetLayout from "./components/Tweets/SingleTweetLayout";
 import { authenticate } from "./store/session";
 
@@ -48,6 +50,10 @@ function App() {
                 <ProtectedRoute path="/users/:userId" exact={true}>
                     <ProfileLayout />
                 </ProtectedRoute>
+                <ProtectedRoute path="/user-not-found" exact={true}>
+                    <UserNotFound />
+                </ProtectedRoute>
+                <PageNotFound />
             </Switch>
         </BrowserRouter>
     );

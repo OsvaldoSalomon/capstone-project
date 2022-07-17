@@ -38,7 +38,6 @@ const CreateComment = ({ tweetId }) => {
             setHasSubmitted(false);
             reset();
         }
-        // setErrors([]);
     };
 
     const addDefaultSrc = (ev) => {
