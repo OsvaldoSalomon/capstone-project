@@ -69,7 +69,7 @@ const EditTweet = ({ tweet, hideForm }) => {
                             onChange={updateContent}
                         />
                         <button className="tweetButton" type="submit">
-                            Edit
+                            Save
                         </button>
                     </div>
                 </form>

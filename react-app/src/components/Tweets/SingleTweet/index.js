@@ -10,7 +10,6 @@ import CreateComment from "../../Comments/CommentForm/CreateComment";
 import Comment from "../../Comments/Comment";
 import './SingleTweet.css';
 
-
 const SingleTweet = () => {
     const dispatch = useDispatch();
     const { tweetId } = useParams();
@@ -40,42 +39,46 @@ const SingleTweet = () => {
         setShowEditForm(!showEditForm);
     };
 
-    return (
-        <div className='singleTweetBody'>
-            {sessionUser.id === currentTweet?.user.id ? (
-                <div className='singleTweetEdit'>
-                    <FiEdit className='iconEdit' onClick={handleEditButton} />
-                    <DeleteTweet tweetId={tweetId} />
-                </div>
-            ) : <span></span>}
-            <div>
-                <div className="singleTweetHeader">
-                    <img className="tweetProfileImage" src={currentTweet.user.profilePic}
-                         alt={currentTweet.user.username} />
-                    <h3 className="tweetAuthor">
-                        {currentTweet?.user.firstName} {currentTweet?.user.lastName}
-                    </h3>
-                    <h4 className="tweetUsername">@{currentTweet?.user.username}</h4>
-                </div>
-                <h2>{currentTweet?.content}</h2>
-                {showEditForm && <EditTweet tweet={currentTweet} hideForm={() => setShowEditForm(false)} />}
-                {image && <img className='tweetImage' src={image?.url} alt='image' />}
-                <p className="tweetDate">
-                    {new Date(currentTweet?.createdAt).toLocaleDateString(undefined, options)}
-                </p>
-                <hr />
+    if (!currentTweet) {
+        return <h1>Loading...</h1>
+    } else {
+        return (
+            <div className='singleTweetBody'>
+                {sessionUser.id === currentTweet?.user.id ? (
+                    <div className='singleTweetEdit'>
+                        <FiEdit className='iconEdit' onClick={handleEditButton} />
+                        <DeleteTweet tweetId={tweetId} />
+                    </div>
+                ) : <span></span>}
                 <div>
-                    <CreateComment tweetId={tweetId} />
+                    <div className="singleTweetHeader">
+                        <img className="tweetProfileImage" src={currentTweet.user.profilePic}
+                             alt={currentTweet.user.username} />
+                        <h3 className="tweetAuthor">
+                            {currentTweet?.user.firstName} {currentTweet?.user.lastName}
+                        </h3>
+                        <h4 className="tweetUsername">@{currentTweet?.user.username}</h4>
+                    </div>
+                    <h2>{currentTweet?.content}</h2>
+                    {showEditForm && <EditTweet tweet={currentTweet} hideForm={() => setShowEditForm(false)} />}
+                    {image && <img className='tweetImage' src={image?.url} alt='image' />}
+                    <p className="tweetDate">
+                        {new Date(currentTweet?.createdAt).toLocaleDateString(undefined, options)}
+                    </p>
                     <hr />
-                    {tweetComments.map(comment => {
-                        return (
-                            <Comment comment={comment} />
-                        )
-                    })}
+                    <div>
+                        <CreateComment tweetId={tweetId} />
+                        <hr />
+                        {tweetComments.map(comment => {
+                            return (
+                                <Comment comment={comment} />
+                            )
+                        })}
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
 
 }
 
