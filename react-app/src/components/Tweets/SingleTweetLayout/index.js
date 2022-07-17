@@ -14,10 +14,11 @@ const SingleTweetLayout = () => {
 
     return (
         <div className='layoutBody'>
-            <div>
-                <ProfileCard user={user} className='profileLayout' />
-                <Profile />
-            </div>
+            {/*<div>*/}
+            {/*    <ProfileCard user={user} className='profileLayout' />*/}
+            {/*    <Profile />*/}
+            {/*</div>*/}
+            <ProfileCard user={user} className='profileLayout' />
             <div className='layoutCenter'>
                 <SingleTweet />
             </div>
