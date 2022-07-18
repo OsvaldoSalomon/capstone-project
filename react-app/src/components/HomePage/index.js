@@ -14,7 +14,7 @@ const HomePage = () => {
             {sessionUser ? <NavLink className='linkTweets' to='/tweets'>Start Tweeting</NavLink> :
                 <Demo />}
             <img className='homeImage'
-                 src='https://images.unsplash.com/photo-1469578582044-18076892f492?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80' />
+                 src='https://images.unsplash.com/photo-1627637820569-c95133be1c62?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2664&q=80' />
             <h2 className='homeContact'>Contact me</h2>
             <div className='contactLinks'>
                 <a href='https://github.com/OsvaldoSalomon'><BsGithub className='iconLink' /></a>
