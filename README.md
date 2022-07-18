@@ -60,20 +60,22 @@ Live Link: https://tweet-r.herokuapp.com/
 ***
 
 ## Splash Page
-![SplashPage](https://user-images.githubusercontent.com/28879757/179323213-558e4314-9e87-465c-b7fa-fef1b8726b3e.png)
+![SplashPage](https://user-images.githubusercontent.com/28879757/179535707-199f6efa-055b-4cd4-b9e7-0a5007eba91b.png)
 
 ## Login
-![Login](https://user-images.githubusercontent.com/28879757/179323261-760c7dc5-f397-409a-bb50-3ceae1db8a30.png)
+![Login](https://user-images.githubusercontent.com/28879757/179535731-5b781d2b-f0b3-4625-8f67-daa859dd8154.png)
 
 ## Sign up
-![SignUp](https://user-images.githubusercontent.com/28879757/179323286-80956071-d4d8-4c85-972a-62b19174fa21.png)
+![Signup](https://user-images.githubusercontent.com/28879757/179535763-75983378-80cb-47fd-ae62-c980db8523d5.png)
 
 ## Home page
-![HomePage1](https://user-images.githubusercontent.com/28879757/179323312-ca6f2de4-d4cd-414a-ab9d-d0ff0f472e6f.png)
-![HomePage2](https://user-images.githubusercontent.com/28879757/179323327-05cd70f7-3ade-4f0d-8516-c6f28c7f76f0.png)
+![TweetList](https://user-images.githubusercontent.com/28879757/179535782-2812d963-9373-4120-ba81-cf764f741d27.png)
 
 ## Tweet view
-![SingleTweet](https://user-images.githubusercontent.com/28879757/179323351-76cfcd8a-e5db-4f4f-8e57-9970ae56db65.png)
+![SingleTweet](https://user-images.githubusercontent.com/28879757/179535829-0e1eeff8-7aef-41a5-9f26-384aad7919c6.png)
+
+## Profile Page
+![ProfilePage](https://user-images.githubusercontent.com/28879757/179535864-d7dbf0ce-5275-4265-aef3-1d88a4b39aa6.png)
 
 
 
