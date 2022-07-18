@@ -14,11 +14,10 @@ const ProfileCard = ({ user }) => {
             <div className='profileCardBackground'></div>
             <div className='profileCardInfo'>
                 <img onError={addDefaultSrc} className="profileImageLogo" src={user.profilePic} alt={user.username} />
-                {/*<h3><NavLink to={`/users/${user?.id}`}>{user?.firstName} {user?.lastName}</NavLink></h3>*/}
-                {/*<NavLink to={`/users/${user?.id}`}><h3>{user?.firstName} {user?.lastName}</h3></NavLink>*/}
-                {sessionUser.id == user.id ?
-                    <NavLink className='linkToUserProfile' to={`/users/${user?.id}`}><h3>{user?.firstName} {user?.lastName}</h3></NavLink> :
-                    <h3>{user?.firstName} {user?.lastName}</h3>}
+                <NavLink className='linkToUserProfile' to={`/users/${user?.id}`}><h3>{user?.firstName} {user?.lastName}</h3></NavLink>
+                {/*{sessionUser.id == user.id ?*/}
+                {/*    <NavLink className='linkToUserProfile' to={`/users/${user?.id}`}><h3>{user?.firstName} {user?.lastName}</h3></NavLink> :*/}
+                {/*    <h3>{user?.firstName} {user?.lastName}</h3>}*/}
                 <h4>@{user?.username}</h4>
                 <p className='profileBio'>"{user?.bio}"</p>
             </div>
