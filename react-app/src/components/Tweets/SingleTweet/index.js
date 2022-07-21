@@ -39,6 +39,10 @@ const SingleTweet = () => {
         setShowEditForm(!showEditForm);
     };
 
+    const addDefaultSrc = (ev) => {
+        ev.target.src = 'https://images.unsplash.com/photo-1641423914598-288fee6cecf2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80'
+    }
+
     if (!currentTweet) {
         return <h1>Loading...</h1>
     } else {
@@ -52,7 +56,7 @@ const SingleTweet = () => {
                 ) : <span></span>}
                 <div>
                     <div className="singleTweetHeader">
-                        <img className="tweetProfileImage" src={currentTweet.user.profilePic}
+                        <img onError={addDefaultSrc} className="tweetProfileImage" src={currentTweet.user.profilePic}
                              alt={currentTweet.user.username} />
                         <h3 className="tweetAuthor">
                             {currentTweet?.user.firstName} {currentTweet?.user.lastName}
