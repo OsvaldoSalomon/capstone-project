@@ -43,12 +43,16 @@ const SingleTweet = () => {
         ev.target.src = 'https://images.unsplash.com/photo-1641423914598-288fee6cecf2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80'
     }
 
+    const brokenImage = (ev) => {
+        ev.target.src = 'https://images.unsplash.com/photo-1644366251160-8791a554e064?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80'
+    }
+
     if (!currentTweet) {
         return <h1>Loading...</h1>
     } else {
         return (
             <div className='singleTweetBody'>
-                {sessionUser.id === currentTweet?.user.id ? (
+                {(sessionUser.id === currentTweet?.user.id) || sessionUser.username === "administrator" ? (
                     <div className='singleTweetEdit'>
                         <FiEdit className='iconEdit' onClick={handleEditButton} />
                         <DeleteTweet tweetId={tweetId} />
@@ -65,7 +69,7 @@ const SingleTweet = () => {
                     </div>
                     <h2>{currentTweet?.content}</h2>
                     {showEditForm && <EditTweet tweet={currentTweet} hideForm={() => setShowEditForm(false)} />}
-                    {image && <img className='tweetImage' src={image?.url} alt='image' />}
+                    {image && <img className='tweetImage' onError={brokenImage} src={image?.url} alt='image' />}
                     <p className="tweetDate">
                         {new Date(currentTweet?.createdAt).toLocaleDateString(undefined, options)}
                     </p>
