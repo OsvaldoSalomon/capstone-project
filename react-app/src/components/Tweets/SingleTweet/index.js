@@ -8,6 +8,7 @@ import DeleteTweet from "../DeleteTweet";
 import EditTweet from "../TweetForm/EditTweet";
 import CreateComment from "../../Comments/CommentForm/CreateComment";
 import Comment from "../../Comments/Comment";
+import LikeTweet from "../LikeTweet";
 import './SingleTweet.css';
 
 const SingleTweet = () => {
@@ -69,6 +70,8 @@ const SingleTweet = () => {
                     <p className="tweetDate">
                         {new Date(currentTweet?.createdAt).toLocaleDateString(undefined, options)}
                     </p>
+                    <hr />
+                    <LikeTweet tweet={currentTweet}/> {currentTweet?.likes.length}
                     <hr />
                     <div>
                         <CreateComment tweetId={tweetId} />

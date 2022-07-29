@@ -27,7 +27,7 @@ const TweetList = () => {
     } else {
         return (
             <div className='tweetList'>
-                {sortedTweets.map((tweet) => {
+                {allTweets.map((tweet) => {
                     return (
                         <div onClick={() => onClicked(tweet.id)}>
                             <TweetCard key={tweet.id} tweet={tweet} />

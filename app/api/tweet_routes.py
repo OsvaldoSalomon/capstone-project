@@ -5,12 +5,14 @@ from app.forms import TweetForm
 import datetime
 from .error_helper import validationErrorsList
 
-tweetRoutes =  Blueprint('tweets', __name__)
+tweetRoutes = Blueprint('tweets', __name__)
+
 
 @tweetRoutes.route('')
 def getAllTweets():
     tweets = Tweet.query.all()
-    return { tweet.id: tweet.to_dict_all() for tweet in tweets }
+    return {tweet.id: tweet.to_dict_all() for tweet in tweets}
+
 
 @tweetRoutes.route('/<int:id>')
 @login_required
@@ -21,6 +23,7 @@ def getSingleTweet(id):
     else:
         return 'Tweet not found.'
 
+
 @tweetRoutes.route('/new', methods=['POST'])
 @login_required
 def createTweet():
@@ -30,8 +33,8 @@ def createTweet():
 
     if form.validate_on_submit():
         tweet = Tweet(
-            userId = current_user.to_dict()['id'],
-            content = data['content']
+            userId=current_user.to_dict()['id'],
+            content=data['content']
         )
 
         db.session.add(tweet)
@@ -39,6 +42,7 @@ def createTweet():
 
         return tweet.to_dict()
     return {'errors': validationErrorsList(form.errors)}, 401
+
 
 @tweetRoutes.route('/<int:id>', methods=['PUT'])
 @login_required
@@ -56,12 +60,30 @@ def updateTweet(id):
         return tweet.to_dict()
     return {'errors': validationErrorsList(form.errors)}, 401
 
+
 @tweetRoutes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def deleteTweet(id):
     tweet = Tweet.query.get(id)
-    if tweet: 
+    if tweet:
         db.session.delete(tweet)
         db.session.commit()
         return 'Tweet deleted successfully.'
     return {'errors': 'Tweet not found.'}, 404
+
+
+@tweetRoutes.route('/<int:id>/likes', methods=['POST'])
+def addRemoveLike(id):
+    tweet = Tweet.query.get(id)
+
+    if current_user in tweet.tweetLikes:
+        tweet.tweetLikes.remove(current_user)
+        db.session.add(tweet)
+        db.session.commit()
+        return tweet.to_dict()
+    tweet.tweetLikes.append(current_user)
+
+    db.session.add(tweet)
+    db.session.commit()
+
+    return tweet.to_dict()

@@ -1,8 +1,12 @@
 import { FaComment } from 'react-icons/fa';
+import { IoMdHeart } from 'react-icons/io';
 import "./TweetCard.css";
 
 const TweetCard = ({ tweet }) => {
-    const image = tweet.images[0];
+
+    const fallback = undefined
+    let image = fallback || (tweet?.images[0])
+
 
     const addDefaultSrc = (ev) => {
         ev.target.src = 'https://images.unsplash.com/photo-1641423914598-288fee6cecf2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80'
@@ -10,7 +14,8 @@ const TweetCard = ({ tweet }) => {
 
     return (
         <div className="tweet">
-            <img onError={addDefaultSrc} className="tweetAuthorLogo" src={tweet.user.profilePic} alt={tweet.user.username} />
+            <img onError={addDefaultSrc} className="tweetAuthorLogo" src={tweet.user.profilePic}
+                 alt={tweet.user.username} />
             <div className='tweetMain'>
                 <div className="tweetHeader">
                     <div className="tweetAuthorName">
@@ -27,6 +32,7 @@ const TweetCard = ({ tweet }) => {
                 <div className="tweetLikesCommentsNumber">
                     <div className="tweetBoxLC">
                         <FaComment className='commentIcon' /> {tweet?.comments}
+                        <IoMdHeart className='commentIcon' /> {tweet?.likes.length}
                     </div>
                 </div>
             </div>

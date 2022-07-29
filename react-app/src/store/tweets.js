@@ -3,15 +3,11 @@ const GET_TWEET = "/tweets/getTweet";
 const CREATE_TWEET = "/tweets/create";
 const EDIT_TWEET = "/tweets/edit";
 const DELETE_TWEET = "/tweets/delete";
+const ADD_REMOVE_LIKE = "tweet/addRemoveLike";
 
 const loadTweets = (tweets) => ({
     type: GET_ALL_TWEETS,
     tweets,
-});
-
-const loadTweet = (tweet) => ({
-    type: GET_TWEET,
-    tweet,
 });
 
 const createTweet = (tweet) => ({
@@ -29,9 +25,13 @@ const deleteTweet = (tweet) => ({
     tweet,
 });
 
+const addLike = (tweet) => ({
+    type: ADD_REMOVE_LIKE,
+    tweet    
+});
+
 export const getTweets = () => async (dispatch) => {
     const response = await fetch("/api/tweets");
-    // console.log("ALL Tweets", response);
 
     if (response.ok) {
         const tweetsList = await response.json();
@@ -102,21 +102,31 @@ export const eraseTweet = (id) => async (dispatch) => {
     }
 };
 
+export const likeTweet = (data) => async (dispatch) => {
+    const response = await fetch(`/api/tweets/${data.tweetId}/likes`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+
+    if (response.ok) {
+        const tweet = await response.json()
+        dispatch(addLike(tweet))
+    }
+}
+
 export const uploadImage = (imageData) => async (dispatch) => {
-    console.log("THUUUNK IMAGE")
     const { image, tweetId } = imageData;
 
     const formData = new FormData();
     formData.append("image", image);
     formData.append("tweetId", tweetId);
 
-    console.log("formData", formData);
     const res = await fetch("/api/images/upload", {
         method: "POST",
         body: formData,
     });
 
-    console.log("response", res)
     if (res.ok) {
         return await res.json();
     }
@@ -138,6 +148,8 @@ const tweetsReducer = (state = {}, action) => {
             const newState = { ...state };
             delete newState[action.tweet.id];
             return newState;
+        case ADD_REMOVE_LIKE:
+            return { ...state, [action.tweet.id]: action.tweet }
         default:
             return state;
     }

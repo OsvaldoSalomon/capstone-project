@@ -1,6 +1,7 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from .tweet import likes
 import datetime
 
 
@@ -18,7 +19,7 @@ class User(db.Model, UserMixin):
 
     tweets = db.relationship('Tweet', back_populates='users')
     comments = db.relationship('Comment', back_populates='users')
-    likes = db.relationship('Like', back_populates='user')
+    userLikes = db.relationship('Tweet', secondary=likes, back_populates='tweetLikes', cascade='all, delete')
 
     @property
     def password(self):
