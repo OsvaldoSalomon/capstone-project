@@ -10,7 +10,7 @@ const SingleTweetLayout = () => {
     const { tweetId } = useParams();
     const tweet = useSelector(state => (state.tweets[tweetId]));
     const user = tweet?.user;
-    console.log(user)
+    // console.log(user)
 
     return (
         <div className='layoutBody'>
