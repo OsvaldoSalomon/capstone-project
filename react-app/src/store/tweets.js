@@ -103,20 +103,20 @@ export const eraseTweet = (id) => async (dispatch) => {
 };
 
 export const uploadImage = (imageData) => async (dispatch) => {
-    console.log("THUUUNK IMAGE")
+    // console.log("THUUUNK IMAGE")
     const { image, tweetId } = imageData;
 
     const formData = new FormData();
     formData.append("image", image);
     formData.append("tweetId", tweetId);
 
-    console.log("formData", formData);
+    // console.log("formData", formData);
     const res = await fetch("/api/images/upload", {
         method: "POST",
         body: formData,
     });
 
-    console.log("response", res)
+    // console.log("response", res)
     if (res.ok) {
         return await res.json();
     }
