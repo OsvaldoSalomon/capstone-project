@@ -1,7 +1,23 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-import datetime
+
+
+follows = db.Table(
+    'follows',
+    db.Column('followerId', db.Integer, db.ForeignKey(
+        'users.id')),
+    db.Column('followedId', db.Integer, db.ForeignKey(
+        'users.id'))
+)
+
+tweet_likes = db.Table(
+    'tweet_likes',
+    db.Column('users', db.Integer, db.ForeignKey(
+        'users.id')),
+    db.Column('tweets', db.Integer, db.ForeignKey(
+        'tweets.id'), primary_key=True)
+)
 
 
 class User(db.Model, UserMixin):
@@ -17,8 +33,34 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     tweets = db.relationship('Tweet', back_populates='users')
+
     comments = db.relationship('Comment', back_populates='users')
-    likes = db.relationship('Like', back_populates='user')
+    
+    followers = db.relationship(
+        "User",
+        secondary=follows,
+        primaryjoin=(follows.c.followerId == id),
+        secondaryjoin=(follows.c.followedId == id),
+        backref=db.backref("following", lazy="dynamic"),
+        lazy="dynamic"
+    )
+
+    # likes = db.relationship('Like', back_populates='user')
+    user_tweet_likes = db.relationship(
+        "Tweet",
+        secondary=tweet_likes,
+        back_populates="like_tweet",
+    )
+
+
+    def follow(self, follow):
+        if follow not in self.followers:
+            self.followers.append(follow)
+
+
+    def unfollow(self, follow):
+        if follow in self.followers:
+            self.followers.remove(follow)
 
     @property
     def password(self):
@@ -39,7 +81,8 @@ class User(db.Model, UserMixin):
             'lastName': self.lastName,
             'bio': self.bio,
             'email': self.email,
-            'profilePic': self.profilePic
+            'profilePic': self.profilePic,
+            'following': [follow.to_dict_followers() for follow in self.followers],
         }
 
     def to_info(self):

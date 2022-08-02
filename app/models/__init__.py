@@ -3,4 +3,4 @@ from .user import User
 from .tweet import Tweet
 from .comment import Comment
 from .image import Image
-from .like import Like
+# from .like import Like
