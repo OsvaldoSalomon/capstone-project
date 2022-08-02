@@ -11,6 +11,7 @@ from .api.auth_routes import auth_routes
 from .api.image_routes import image_routes
 from .api.tweet_routes import tweetRoutes
 from .api.comment_routes import commentRoutes
+from .api.like_routes import likeRoutes
 
 from .seeds import seed_commands
 
@@ -37,6 +38,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(image_routes, url_prefix='/api/images')
 app.register_blueprint(tweetRoutes, url_prefix='/api/tweets')
 app.register_blueprint(commentRoutes, url_prefix='/api/comments')
+app.register_blueprint(likeRoutes, url_prefix='/api/likes')
 db.init_app(app)
 Migrate(app, db)
 

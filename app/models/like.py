@@ -10,3 +10,10 @@ class Like(db.Model):
 
     user = db.relationship('User', back_populates='likes')
     tweets = db.relationship('Tweet', back_populates='likes')
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "tweetId": self.tweetId,
+            "userId": self.userId
+        }
