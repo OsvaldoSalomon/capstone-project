@@ -1,13 +1,14 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from .tweet import tweet_likes
 
 
-# followers = db.Table(
-#     'followers',
-#     db.Column('followerId', db.Integer, db.ForeignKey('users.id')),
-#     db.Column('followedId', db.Integer, db.ForeignKey('users.id'))
-# )
+followers = db.Table(
+    'followers',
+    db.Column('followerId', db.Integer, db.ForeignKey('users.id')),
+    db.Column('followedId', db.Integer, db.ForeignKey('users.id'))
+)
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -23,12 +24,23 @@ class User(db.Model, UserMixin):
 
     tweets = db.relationship('Tweet', back_populates='users')
     comments = db.relationship('Comment', back_populates='users')
-    likes = db.relationship('Like', back_populates='user', cascade="all, delete")
 
-    userFollowings = db.relationship("Follow", foreign_keys="Follow.followingId",
-                        back_populates="users", lazy="dynamic")
-    userFollowers = db.relationship("Follow", foreign_keys="Follow.followerId",
-                        back_populates="following", lazy="dynamic")
+    user_tweets = db.relationship('Tweet', secondary=tweet_likes, back_populates='tweet_users', cascade='all,delete')
+    
+    follower = db.relationship(
+        'User', secondary=followers, 
+        primaryjoin=(followers.c.followerId == id), 
+        secondaryjoin = (followers.c.followedId == id), 
+        backref = db.backref('followers', lazy = 'dynamic'), 
+        lazy = 'dynamic')
+    # likes = db.relationship('Like', back_populates='user', cascade="all, delete")
+
+
+    # userFollowings = db.relationship("Follow", foreign_keys="Follow.followingId",
+    #                     back_populates="users", lazy="dynamic")
+    # userFollowers = db.relationship("Follow", foreign_keys="Follow.followerId",
+    #                     back_populates="following", lazy="dynamic")
+
 
 
 
@@ -52,9 +64,11 @@ class User(db.Model, UserMixin):
             'bio': self.bio,
             'email': self.email,
             'profilePic': self.profilePic,
-            'likes': [like.id for like in self.likes],
-            'follower': [following.id for following in self.userFollowings],
-            'following': [follower.id for follower in self.userFollowers]
+            "followers": [following.to_dict() for following in self.follower],
+            "following_you":[followers.to_dict() for followers in self.followers]
+            # 'likes': [like.id for like in self.likes],
+            # 'followers': [following.id for following in self.userFollowings],
+            # 'following': [follower.id for follower in self.userFollowers]
         }
 
     def to_info(self):
@@ -66,4 +80,17 @@ class User(db.Model, UserMixin):
             'bio': self.bio,
             'profilePic': self.profilePic
         }
+
+    def follow(self, user):
+        if not self.to_following(user):
+            self.follower.append(user)
+            return self
+
+    def unfollow(self, user):
+        if self.to_following(user):
+            self.follower.remove(user)
+            return self
+
+    def following(self, user):
+        return self.follower.filter(followers.c.followedId == user.id).count() > 0
 
