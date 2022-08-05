@@ -20,6 +20,9 @@ const ProfileCard = ({ user }) => {
                 {/*    <h3>{user?.firstName} {user?.lastName}</h3>}*/}
                 <h4>@{user?.username}</h4>
                 <p className='profileBio'>"{user?.bio}"</p>
+                {/* <p>Followers: {user?.followers.length}</p>
+                <p>Followers: {user?.following_you.length}</p> */}
+                <h4>Followers: 3 | Following: 6</h4>
             </div>
         </div>
     )

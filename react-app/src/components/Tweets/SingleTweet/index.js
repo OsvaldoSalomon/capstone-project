@@ -70,6 +70,7 @@ const SingleTweet = () => {
                     <h2>{currentTweet?.content}</h2>
                     {showEditForm && <EditTweet tweet={currentTweet} hideForm={() => setShowEditForm(false)} />}
                     {image && <img className='tweetImage' onError={brokenImage} src={image?.url} alt='image' />}
+                    <div></div>
                     <p className="tweetDate">
                         {new Date(currentTweet?.createdAt).toLocaleDateString(undefined, options)}
                     </p>

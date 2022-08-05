@@ -66,9 +66,9 @@ def deleteTweet(id):
         return 'Tweet deleted successfully.'
     return {'errors': 'Tweet not found.'}, 404
 
-@tweetRoutes.route('/<int:tweetId>', methods=['POST'])
+@tweetRoutes.route('/<int:tweetId>/likes', methods=['POST'])
 def addRemoveLike(tweetId):
-    tweet = Tweet.get(tweetId)
+    tweet = Tweet.query.get(tweetId)
 
     # This checks to see if the user already liked the photo
     if current_user in tweet.tweet_users:

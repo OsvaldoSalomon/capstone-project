@@ -55,6 +55,13 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+    def to_follow_info(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'profilePic': self.profilePic
+        }
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -64,11 +71,8 @@ class User(db.Model, UserMixin):
             'bio': self.bio,
             'email': self.email,
             'profilePic': self.profilePic,
-            "followers": [following.to_dict() for following in self.follower],
-            "following_you":[followers.to_dict() for followers in self.followers]
-            # 'likes': [like.id for like in self.likes],
-            # 'followers': [following.id for following in self.userFollowings],
-            # 'following': [follower.id for follower in self.userFollowers]
+            "following": [following.to_follow_info() for following in self.follower],
+            "followers":[followers.to_follow_info() for followers in self.followers]
         }
 
     def to_info(self):

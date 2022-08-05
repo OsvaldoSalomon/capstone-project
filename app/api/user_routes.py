@@ -27,7 +27,7 @@ def followUnfollowUser(followerId):
         db.session.add(current_user)
         db.session.commit()
 
-        return current_user.to_follower_dict()
+        return current_user.to_dict()
 
     current_user.follower.append(userToFollow)
 
@@ -35,4 +35,4 @@ def followUnfollowUser(followerId):
     db.session.commit()
 
 
-    return current_user.to_info()
+    return current_user.to_dict()
