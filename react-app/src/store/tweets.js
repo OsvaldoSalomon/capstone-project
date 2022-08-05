@@ -6,27 +6,27 @@ const DELETE_TWEET = "/tweets/delete";
 
 const loadTweets = (tweets) => ({
     type: GET_ALL_TWEETS,
-    tweets,
+    tweets
 });
 
 const loadTweet = (tweet) => ({
     type: GET_TWEET,
-    tweet,
+    tweet
 });
 
 const createTweet = (tweet) => ({
     type: CREATE_TWEET,
-    tweet,
+    tweet
 });
 
 const editTweet = (tweet) => ({
     type: EDIT_TWEET,
-    tweet,
+    tweet
 });
 
 const deleteTweet = (tweet) => ({
     type: DELETE_TWEET,
-    tweet,
+    tweet
 });
 
 export const getTweets = () => async (dispatch) => {
