@@ -65,3 +65,21 @@ def deleteTweet(id):
         db.session.commit()
         return 'Tweet deleted successfully.'
     return {'errors': 'Tweet not found.'}, 404
+
+@tweetRoutes.route('/<int:tweetId>', methods=['POST'])
+def addRemoveLike(tweetId):
+    tweet = Tweet.get(tweetId)
+
+    # This checks to see if the user already liked the photo
+    if current_user in tweet.tweet_users:
+        tweet.tweet_users.remove(current_user)
+        db.session.add(tweet)
+        db.session.commit()
+        return tweet.to_dict()
+    # If it's not in the list, then it'll add it to the list and return that photo
+    tweet.tweet_users.append(current_user)
+
+    db.session.add(tweet)
+    db.session.commit()
+
+    return tweet.to_dict()
