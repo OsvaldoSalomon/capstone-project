@@ -16,8 +16,8 @@ const CreateComment = ({ tweetId }) => {
 
     useEffect(() => {
         const errors = [];
-        if (content.length == 0) errors.push('Please provide a content.')
-        if (content.trim().length == 0) errors.push("You can't provide whitespaces.");
+        if (content.length === 0) errors.push('Please provide a content.')
+        if (content.trim().length === 0) errors.push("You can't provide whitespaces.");
         if (content.length <= 3) errors.push('Comment must be greater than 3 characters.');
         if (content.length >= 100) errors.push('Comment must be less than 100 characters.');
         setErrors(errors);

@@ -85,16 +85,3 @@ class User(db.Model, UserMixin):
             'profilePic': self.profilePic
         }
 
-    def follow(self, user):
-        if not self.to_following(user):
-            self.follower.append(user)
-            return self
-
-    def unfollow(self, user):
-        if self.to_following(user):
-            self.follower.remove(user)
-            return self
-
-    def following(self, user):
-        return self.follower.filter(followers.c.followedId == user.id).count() > 0
-

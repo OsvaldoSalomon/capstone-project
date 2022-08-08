@@ -23,8 +23,8 @@ const deleteComment = (comment) => ({
     comment,
 });
 
-export const getComments = () => async (dispatch) => {
-    const response = await fetch("/api/comments");
+export const getComments = (tweetId) => async (dispatch) => {
+    const response = await fetch(`/api/comments/${tweetId}`);
 
     if (response.ok) {
         const commentsList = await response.json();
@@ -34,7 +34,7 @@ export const getComments = () => async (dispatch) => {
 };
 
 export const addComment = (data) => async (dispatch) => {
-    console.log('THUNK ADD COMMENT', data)
+    // console.log('THUNK ADD COMMENT', data)
     const response = await fetch(`/api/comments/new`, {
         method: "POST",
         headers: {
@@ -42,7 +42,7 @@ export const addComment = (data) => async (dispatch) => {
         },
         body: JSON.stringify(data),
     });
-    console.log('responseeee', response)
+    // console.log('responseeee', response)
 
     if (response.ok) {
         const data = await response.json();

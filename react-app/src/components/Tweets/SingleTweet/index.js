@@ -2,12 +2,13 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getComments } from "../../../store/comments";
-import { getTweets } from "../../../store/tweets";
+import { getTweets, likeUnlikeTweet } from "../../../store/tweets";
 import { FiEdit } from 'react-icons/fi';
 import DeleteTweet from "../DeleteTweet";
 import EditTweet from "../TweetForm/EditTweet";
 import CreateComment from "../../Comments/CommentForm/CreateComment";
 import Comment from "../../Comments/Comment";
+import { IoMdHeart } from "react-icons/io";
 import './SingleTweet.css';
 
 const SingleTweet = () => {
@@ -18,14 +19,14 @@ const SingleTweet = () => {
     const comments = useSelector(state => Object.values(state.comments));
     const tweets = useSelector(state => Object.values(state.tweets));
 
-    const tweetComments = comments.filter((comment) => comment.tweetId == tweetId);
+    // const tweetComments = comments.filter((comment) => comment.tweetId == tweetId);
     const currentTweetFiltered = tweets.filter(current => current?.id == tweetId);
     const currentTweet = currentTweetFiltered[0];
     const image = currentTweet?.images[0];
 
     useEffect(() => {
         dispatch(getTweets());
-        dispatch(getComments());
+        dispatch(getComments(tweetId));
     }, [dispatch])
 
     const options = {
@@ -38,6 +39,14 @@ const SingleTweet = () => {
     const handleEditButton = () => {
         setShowEditForm(!showEditForm);
     };
+
+    const onClickLike = async () => {
+        const data = {
+            userId: sessionUser.id,
+            tweetId
+        }
+        await dispatch(likeUnlikeTweet(data))
+    }
 
     const addDefaultSrc = (ev) => {
         ev.target.src = 'https://images.unsplash.com/photo-1641423914598-288fee6cecf2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80'
@@ -71,14 +80,23 @@ const SingleTweet = () => {
                     {showEditForm && <EditTweet tweet={currentTweet} hideForm={() => setShowEditForm(false)} />}
                     {image && <img className='tweetImage' onError={brokenImage} src={image?.url} alt='image' />}
                     <div></div>
-                    <p className="tweetDate">
-                        {new Date(currentTweet?.createdAt).toLocaleDateString(undefined, options)}
-                    </p>
+                    {/*<p className="tweetDate">*/}
+                    {/*    /!*{new Date(currentTweet?.createdAt).toLocaleDateString(undefined, options)}*!/*/}
+                    {/*    <IoMdHeart className="commentIcon" /> {currentTweet?.likes.length}*/}
+                    {/*</p>*/}
+                    <div className="likeCommentsContainer">
+                        <div className='likeIconNumber'>
+                            <IoMdHeart className="commentIcon" /> {currentTweet?.likes.length}
+                        </div>
+                        {currentTweet?.comments === 1 ? <p>{currentTweet?.comments} comment</p> :
+                            <p>{currentTweet?.comments} comments</p>}
+                    </div>
                     <hr />
+
                     <div>
                         <CreateComment tweetId={tweetId} />
                         <hr />
-                        {tweetComments.map(comment => {
+                        {comments.map(comment => {
                             return (
                                 <Comment comment={comment} />
                             )

@@ -37,7 +37,7 @@ const TweetCard = ({ tweet }) => {
 							onError={brokenImage}
 							className="tweet__image"
 							src={image?.url}
-							alt="image"
+							alt="AnImage"
 						/>
 					)}
 				</div>

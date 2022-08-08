@@ -8,9 +8,9 @@ from .error_helper import validationErrorsList
 commentRoutes = Blueprint('comments', __name__)
 
 
-@commentRoutes.route('')
-def getAllComments():
-    comments = Comment.query.all()
+@commentRoutes.route('/<int:tweetId>')
+def getAllComments(tweetId):
+    comments = Comment.query.filter(Comment.tweetId == tweetId).all()
     return { comment.id: comment.to_dict() for comment in comments }
 
 @commentRoutes.route('/<int:id>')
