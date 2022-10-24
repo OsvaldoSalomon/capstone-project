@@ -19,7 +19,7 @@ const Comment = ({ comment }) => {
 
     return (
         <div className='comment'>
-            <img onError={addDefaultSrc} className="commentProfileImage" src={comment?.user.profilePic} />
+            <img alt={comment?.user.profilePic} onError={addDefaultSrc} className="commentProfileImage" src={comment?.user.profilePic} />
             <div className='commentMain'>
                 <div className='commentHeader'>
                     <div className='commentAuthorName'>
@@ -35,7 +35,7 @@ const Comment = ({ comment }) => {
                     {sessionUser.id === comment?.user.id ? (
                         <div>
                             <FiEdit className='iconEdit' onClick={handleEditButton} />
-                            <DeleteComment commentId={comment?.id} />
+                            <DeleteComment commentId={comment?.id} tweetId={comment?.tweetId} />
                         </div>
                     ) : <span></span>}
                 </div>

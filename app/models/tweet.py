@@ -1,6 +1,12 @@
 from .db import db
 import datetime
 
+tweet_likes = db.Table(
+    "tweet_likes",
+    db.Model.metadata,
+    db.Column('users', db.Integer, db.ForeignKey('users.id'), primary_key=True, nullable=False),
+    db.Column('tweets', db.Integer, db.ForeignKey('tweets.id'), primary_key=True, nullable=False)
+)
 
 class Tweet(db.Model):
     __tablename__ = 'tweets'
@@ -14,7 +20,7 @@ class Tweet(db.Model):
     users = db.relationship('User', back_populates='tweets')
     comments = db.relationship("Comment", back_populates="tweets", cascade="all, delete")
     images = db.relationship("Image", back_populates="tweets", cascade="all, delete")
-    likes = db.relationship("Like", back_populates="tweets", cascade="all, delete")
+    tweet_users = db.relationship('User', secondary=tweet_likes, back_populates='user_tweets')
 
     def to_dict_all(self):
         return {
@@ -25,8 +31,9 @@ class Tweet(db.Model):
             # 'comments': [comment.to_dict() for comment in self.comments],
             'comments': len(self.comments),
             'images': [ image.to_dict() for image in self.images],
+            'likes': [like.to_follow_info() for like in self.tweet_users],
             # 'likes': [like.to_dict() for like in self.likes],
-            'likes': len(self.likes),
+            # 'likes': len(self.likes),
             'createdAt': self.createdAt,
             'updatedAt': self.updatedAt
         }
@@ -40,8 +47,8 @@ class Tweet(db.Model):
             'comments': [comment.to_dict() for comment in self.comments],
             # 'comments': len(self.comments),
             'images': [ image.to_dict() for image in self.images],
-            # 'likes': [like.to_dict() for like in self.likes],
-            'likes': len(self.likes),
+            'likes': [like.to_dict() for like in self.tweet_users],
+            # 'likes': len(self.likes),
             'createdAt': self.createdAt,
             'updatedAt': self.updatedAt
         }
