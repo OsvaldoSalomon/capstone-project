@@ -56,11 +56,11 @@ const SignUpForm = () => {
             password,
         };
 
-        console.log("ON SIGN UP", userData);
+        // console.log("ON SIGN UP", userData);
 
         if (errors.length <= 0) {
             const data = await dispatch(signUp(userData));
-            console.log(data);
+            // console.log(data);
             if (data) {
                 setErrors(data);
             }

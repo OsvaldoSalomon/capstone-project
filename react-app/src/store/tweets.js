@@ -149,13 +149,13 @@ export const uploadImage = (imageData) => async () => {
     formData.append("image", image);
     formData.append("tweetId", tweetId);
 
-    console.log("formData", formData);
+    // console.log("formData", formData);
     const res = await fetch("/api/images/upload", {
         method: "POST",
         body: formData,
     });
 
-    console.log("response", res)
+    // console.log("response", res)
     if (res.ok) {
         return await res.json();
     }
