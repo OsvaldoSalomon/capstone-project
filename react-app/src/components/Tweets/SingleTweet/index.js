@@ -8,7 +8,7 @@ import DeleteTweet from "../DeleteTweet";
 import EditTweet from "../TweetForm/EditTweet";
 import CreateComment from "../../Comments/CommentForm/CreateComment";
 import Comment from "../../Comments/Comment";
-import { IoMdHeart } from "react-icons/io";
+import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 import './SingleTweet.css';
 
 const SingleTweet = () => {
@@ -19,7 +19,6 @@ const SingleTweet = () => {
     const comments = useSelector(state => Object.values(state.comments));
     const tweets = useSelector(state => Object.values(state.tweets));
 
-    // const tweetComments = comments.filter((comment) => comment.tweetId == tweetId);
     const currentTweetFiltered = tweets.filter(current => current?.id == tweetId);
     const currentTweet = currentTweetFiltered[0];
     const image = currentTweet?.images[0];
@@ -39,6 +38,15 @@ const SingleTweet = () => {
     const handleEditButton = () => {
         setShowEditForm(!showEditForm);
     };
+
+    const liked = () => {
+        for (let like of currentTweet.likes) {
+            if (like.id == sessionUser.id) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     const onClickLike = async () => {
         const data = {
@@ -80,13 +88,22 @@ const SingleTweet = () => {
                     {showEditForm && <EditTweet tweet={currentTweet} hideForm={() => setShowEditForm(false)} />}
                     {image && <img className='tweetImage' onError={brokenImage} src={image?.url} alt='image' />}
                     <div></div>
-                    {/*<p className="tweetDate">*/}
-                    {/*    /!*{new Date(currentTweet?.createdAt).toLocaleDateString(undefined, options)}*!/*/}
-                    {/*    <IoMdHeart className="commentIcon" /> {currentTweet?.likes.length}*/}
-                    {/*</p>*/}
+                    <p className="tweetDate">
+                        {/*{timeUpdatedAt(currentTweet?.updatedAt)}*/}
+                        {new Date(currentTweet?.updatedAt).toLocaleDateString(undefined, options)}
+                    </p>
                     <div className="likeCommentsContainer">
-                        <div className='likeIconNumber'>
-                            <IoMdHeart className="commentIcon" /> {currentTweet?.likes.length}
+                        <div>
+                            {liked() ?
+                                <div className='likeIconNumber'>
+                                    <IoMdHeart onClick={onClickLike}
+                                               className="commentIcon" /> {currentTweet?.likes.length}
+                                </div> :
+                                <div className='likeIconNumber'>
+                                    <IoMdHeartEmpty onClick={onClickLike}
+                                                    className="commentIcon" /> {currentTweet?.likes.length}
+                                </div>
+                            }
                         </div>
                         {currentTweet?.comments === 1 ? <p>{currentTweet?.comments} comment</p> :
                             <p>{currentTweet?.comments} comments</p>}
@@ -98,7 +115,7 @@ const SingleTweet = () => {
                         <hr />
                         {comments.map(comment => {
                             return (
-                                <Comment comment={comment} />
+                                <Comment key={comment.id} comment={comment} />
                             )
                         })}
                     </div>

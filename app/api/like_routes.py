@@ -1,4 +1,3 @@
-from tkinter import PhotoImage
 from flask import Blueprint,  session, request
 from app.models import db, Like
 from flask_login import login_required, current_user

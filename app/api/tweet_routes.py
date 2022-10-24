@@ -31,7 +31,9 @@ def createTweet():
     if form.validate_on_submit():
         tweet = Tweet(
             userId = current_user.to_dict()['id'],
-            content = data['content']
+            content = data['content'],
+            createdAt = datetime.datetime.now(),
+            updatedAt = datetime.datetime.now()
         )
 
         db.session.add(tweet)

@@ -118,7 +118,7 @@ export const eraseTweet = (id) => async (dispatch) => {
 };
 
 export const likeUnlikeTweet = (data) => async (dispatch) => {
-    const response = await fetch(`/api/tweets/${data.tweetId}`, {
+    const response = await fetch(`/api/tweets/${data.tweetId}/likes`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
