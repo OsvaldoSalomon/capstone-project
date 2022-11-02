@@ -89,7 +89,6 @@ const SingleTweet = () => {
                     {image && <img className='tweetImage' onError={brokenImage} src={image?.url} alt='image' />}
                     <div></div>
                     <p className="tweetDate">
-                        {/*{timeUpdatedAt(currentTweet?.updatedAt)}*/}
                         {new Date(currentTweet?.updatedAt).toLocaleDateString(undefined, options)}
                     </p>
                     <div className="likeCommentsContainer">
