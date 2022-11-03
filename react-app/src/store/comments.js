@@ -23,8 +23,8 @@ const deleteComment = (comment) => ({
     comment,
 });
 
-export const getComments = () => async (dispatch) => {
-    const response = await fetch("/api/comments");
+export const getComments = (tweetId) => async (dispatch) => {
+    const response = await fetch(`/api/comments/${tweetId}`);
 
     if (response.ok) {
         const commentsList = await response.json();

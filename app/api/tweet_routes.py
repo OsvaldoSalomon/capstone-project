@@ -17,7 +17,7 @@ def getAllTweets():
 def getSingleTweet(id):
     singleTweet = Tweet.query.get(id)
     if singleTweet:
-        return singleTweet.to_dict_all()
+        return singleTweet.to_dict()
     else:
         return 'Tweet not found.'
 
@@ -31,7 +31,9 @@ def createTweet():
     if form.validate_on_submit():
         tweet = Tweet(
             userId = current_user.to_dict()['id'],
-            content = data['content']
+            content = data['content'],
+            createdAt = datetime.datetime.now(),
+            updatedAt = datetime.datetime.now()
         )
 
         db.session.add(tweet)
@@ -65,3 +67,21 @@ def deleteTweet(id):
         db.session.commit()
         return 'Tweet deleted successfully.'
     return {'errors': 'Tweet not found.'}, 404
+
+@tweetRoutes.route('/<int:tweetId>/likes', methods=['POST'])
+def addRemoveLike(tweetId):
+    tweet = Tweet.query.get(tweetId)
+
+    # This checks to see if the user already liked the photo
+    if current_user in tweet.tweet_users:
+        tweet.tweet_users.remove(current_user)
+        db.session.add(tweet)
+        db.session.commit()
+        return tweet.to_dict()
+    # If it's not in the list, then it'll add it to the list and return that photo
+    tweet.tweet_users.append(current_user)
+
+    db.session.add(tweet)
+    db.session.commit()
+
+    return tweet.to_dict()

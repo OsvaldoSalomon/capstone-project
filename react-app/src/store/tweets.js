@@ -3,40 +3,55 @@ const GET_TWEET = "/tweets/getTweet";
 const CREATE_TWEET = "/tweets/create";
 const EDIT_TWEET = "/tweets/edit";
 const DELETE_TWEET = "/tweets/delete";
+const ADD_REMOVE_LIKE = "/tweets/like"
 
 const loadTweets = (tweets) => ({
     type: GET_ALL_TWEETS,
-    tweets,
+    tweets
 });
 
 const loadTweet = (tweet) => ({
     type: GET_TWEET,
-    tweet,
+    tweet
 });
 
 const createTweet = (tweet) => ({
     type: CREATE_TWEET,
-    tweet,
+    tweet
 });
 
 const editTweet = (tweet) => ({
     type: EDIT_TWEET,
-    tweet,
+    tweet
 });
 
 const deleteTweet = (tweet) => ({
     type: DELETE_TWEET,
-    tweet,
+    tweet
 });
+
+const addRemoveLike = (tweet) => ({
+    type: ADD_REMOVE_LIKE,
+    tweet
+})
 
 export const getTweets = () => async (dispatch) => {
     const response = await fetch("/api/tweets");
-    // console.log("ALL Tweets", response);
 
     if (response.ok) {
         const tweetsList = await response.json();
         dispatch(loadTweets(tweetsList));
         return tweetsList;
+    }
+};
+
+export const getSingleTweet = (tweetId) => async (dispatch) => {
+    const response = await fetch(`/api/tweets/${tweetId}`);
+
+    if (response.ok) {
+        const singleTweet = await response.json();
+        dispatch(loadTweet(singleTweet));
+        return singleTweet;
     }
 };
 
@@ -102,7 +117,31 @@ export const eraseTweet = (id) => async (dispatch) => {
     }
 };
 
-export const uploadImage = (imageData) => async (dispatch) => {
+export const likeUnlikeTweet = (data) => async (dispatch) => {
+    const response = await fetch(`/api/tweets/${data.tweetId}/likes`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(addRemoveLike(data));
+
+        return data;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ["An error occurred. Please try again."];
+    }
+}
+
+export const uploadImage = (imageData) => async () => {
     // console.log("THUUUNK IMAGE")
     const { image, tweetId } = imageData;
 
@@ -133,6 +172,8 @@ const tweetsReducer = (state = {}, action) => {
         case CREATE_TWEET:
             return { ...state, [action.tweet.id]: action.tweet };
         case EDIT_TWEET:
+            return { ...state, [action.tweet.id]: action.tweet };
+        case ADD_REMOVE_LIKE:
             return { ...state, [action.tweet.id]: action.tweet };
         case DELETE_TWEET:
             const newState = { ...state };
