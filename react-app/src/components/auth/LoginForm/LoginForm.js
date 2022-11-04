@@ -16,9 +16,9 @@ const LoginForm = () => {
 
     useEffect(() => {
         const errors = [];
-        if (email.length === 0) errors.push("Must provide a value for the email.");
+        if (email.length == 0) errors.push("Must provide a value for the email.");
         if (!emailRegex.test(email)) errors.push("Must provide a valid email.");
-        if (password.length === 0) errors.push("Must provide a value for the password.");
+        if (password.length == 0) errors.push("Must provide a value for the password.");
         if (password.length <= 7) errors.push("Password must be longer than 8 characters.");
         setErrors(errors);
     }, [email, password]);

@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import './ProfileCard.css'
 
 const ProfileCard = ({ user }) => {
@@ -13,16 +13,13 @@ const ProfileCard = ({ user }) => {
         <div className='profileCardBody'>
             <div className='profileCardBackground'></div>
             <div className='profileCardInfo'>
-                <img onError={addDefaultSrc} className="profileImageLogo" src={user?.profilePic} alt={user?.username} />
+                <img onError={addDefaultSrc} className="profileImageLogo" src={user.profilePic} alt={user.username} />
                 <NavLink className='linkToUserProfile' to={`/users/${user?.id}`}><h3>{user?.firstName} {user?.lastName}</h3></NavLink>
                 {/*{sessionUser.id == user.id ?*/}
                 {/*    <NavLink className='linkToUserProfile' to={`/users/${user?.id}`}><h3>{user?.firstName} {user?.lastName}</h3></NavLink> :*/}
                 {/*    <h3>{user?.firstName} {user?.lastName}</h3>}*/}
                 <h4>@{user?.username}</h4>
                 <p className='profileBio'>"{user?.bio}"</p>
-                {/* <p>Followers: {user?.followers.length}</p>
-                <p>Followers: {user?.following_you.length}</p> */}
-                <h4>Followers: 3 | Following: 6</h4>
             </div>
         </div>
     )

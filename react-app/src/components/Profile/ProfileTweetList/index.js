@@ -17,7 +17,7 @@ const ProfileTweetList = ({ user }) => {
         dispatch(getTweets());
     }, [dispatch])
 
-    const filteredTweets = allTweets.filter(tweet => tweet.user.id === user.id)
+    const filteredTweets = allTweets.filter(tweet => tweet.user.id == user.id)
 
     const sortedTweets = filteredTweets.sort((a, b) => {
         return new Date(a.createdAt - b.createdAt);

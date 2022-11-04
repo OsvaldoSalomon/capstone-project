@@ -5,13 +5,13 @@ import './PageNotFound.css';
 
 
 const PageNotFound = () => {
-    const history = useHistory();
+    let history = useHistory();
 
     useEffect(() => {
         setTimeout(() => {
             history.push('/');
         }, 4000)
-    }, [history])
+    }, [])
 
     return (
         <div className="notFoundBody">

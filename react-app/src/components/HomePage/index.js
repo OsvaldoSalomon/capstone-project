@@ -13,7 +13,7 @@ const HomePage = () => {
             <h1 className='homeSubtitle'>The place where you can share anything</h1>
             {sessionUser ? <NavLink className='linkTweets' to='/tweets'>Start Tweeting</NavLink> :
                 <Demo />}
-            <img alt='AnImage' className='homeImage'
+            <img className='homeImage'
                  src='https://images.unsplash.com/photo-1627637820569-c95133be1c62?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2664&q=80' />
             <h2 className='homeContact'>Contact me</h2>
             <div className='contactLinks'>

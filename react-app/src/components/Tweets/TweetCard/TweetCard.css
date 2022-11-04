@@ -66,16 +66,3 @@
 	width: 1.3em;
 	height: 1.3em;
 }
-
-.likeCommentsContainer {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-}
-
-.likeIconNumber {
-	display: flex;
-	align-items: center;
-	gap: 0.5em;
-}

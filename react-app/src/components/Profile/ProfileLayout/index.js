@@ -2,15 +2,10 @@ import ProfileCard from "../ProfileCard";
 import ProfileTweetList from "../ProfileTweetList";
 import ProfileSuggestion from "../ProfileSuggestion";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getSingleUser } from "../../../store/users";
+import { useParams, useHistory } from "react-router-dom";
 
 const ProfileLayout = () => {
-    const dispatch = useDispatch();
-    // const userFromStore = useSelector(state => state.users)
-    // console.log(">>>>>>>>>>>", userFromStore)
-
+    const history = useHistory();
     const notFoundUser = {
         id: 404,
         firstName: 'Not Found',
@@ -30,12 +25,11 @@ const ProfileLayout = () => {
             return;
         }
         (async () => {
-            dispatch(getSingleUser(userId))
             const response = await fetch(`/api/users/${userId}`);
             const user = await response.json();
             setUser(user);
         })();
-    }, [userId, dispatch]);
+    }, [userId]);
 
     return (
         <div className='layoutBody'>
