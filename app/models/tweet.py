@@ -38,9 +38,7 @@ class Tweet(db.Model):
             'userId': self.userId,
             'user': self.users.to_info(),
             'comments': [comment.to_dict() for comment in self.comments],
-            # 'comments': len(self.comments),
             'images': [ image.to_dict() for image in self.images],
-            # 'likes': [like.to_dict() for like in self.likes],
             'likes': len(self.likes),
             'createdAt': self.createdAt,
             'updatedAt': self.updatedAt
